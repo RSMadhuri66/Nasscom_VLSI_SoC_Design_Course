@@ -154,7 +154,7 @@ The detailed analysis can be performed using the printing statistics that we get
 
  <img src="images/Detailed reports.jpeg" alt="Alt Text" width="800" height="600">
 
-We can see that dxftp value is 1613 and the total number of wires are 14596 so, the flop ratio is 
+We can see that dxftp value is 1613 and the total number of wires are 14876 so, the flop ratio is 
 
 ``` (value of dxftp/total number of cells) * 100 = (1613/14876) ``` which is approximately 10.84%. 
 
