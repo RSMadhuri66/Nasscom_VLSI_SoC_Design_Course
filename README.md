@@ -4,7 +4,7 @@
 
 ### 1.	How to talk to computers?
 
-#### 1.1.1 Introduction to QFN-48 Package, chip, pads, core, die and Ips: 
+#### 1.1.1 Introduction: 
 
 This is the typical Arduino Leonardo Board. The highlighted part is the chip, and we are going to learn more about the design and contents of the chip in this course. This chip is designed from synthesis all the way down for production using the RTL to GDSll pipeline. Arduino consists of a programmable circuit board and a piece of software, or IDE that runs on a computer and is used to create and upload computer code to Arduino. 
 
