@@ -1,28 +1,28 @@
 # Nasscom_VLSI_SoC_Design_Course
-Nasscom VLSI SoC design
 
-DAY 1 - Inception of open-source EDA, OpenLANE and sky130 PDK
+## DAY 1 - Inception of open-source EDA, OpenLANE and sky130 PDK
 
-1.	How to talk to computers?
+### 1.	How to talk to computers?
 
-1.1 Introduction to QFN-48 Package, chip, pads, core, die and Ips: 
+#### 1.1.1 Introduction to QFN-48 Package, chip, pads, core, die and Ips: 
 
 This is the typical Arduino Leonardo Board. The highlighted part is the chip, and we are going to learn more about the design and contents of the chip in this course. This chip is designed from synthesis all the way down for production using the RTL to GDSll pipeline. Arduino consists of a programmable circuit board and a piece of software, or IDE that runs on a computer and is used to create and upload computer code to Arduino. 
+
 
  
 
 
 The below image describes the schematic representation of a microprocessor/ S-o-C architecture, it contains processor/SoC, SDRAM, Vcc/GND, ADC, QSPL1- Flash, UART ports, SPI ports. 
 
-Processor/SoC: This system-on-a-chip that is the main component which runs the whole system. 
+**Processor/SoC:** This system-on-a-chip that is the main component which runs the whole system. 
 I2C1, QSPI2, UART1/2, PWM0-5, GPIO00-14: These are peripheral interfaces and though these input/output (I/O) signals are directly connected to the processor/SoC. (Which will be discussed in the later part again). 
 
-SDRAM: This represents the synchronous dynamic random-access memory (SDRAM) connected to the processor/SoC.
-I2C0-EEPROM: This is an I2C (Inter-Integrated Circuit) EEPROM (Electrically Erasable Programmable Read-Only Memory) component connected to the processor/SoC.
+**SDRAM:** This represents the synchronous dynamic random-access memory (SDRAM) connected to the processor/SoC.
+**I2C0-EEPROM:** This is an I2C (Inter-Integrated Circuit) EEPROM (Electrically Erasable Programmable Read-Only Memory) component connected to the processor/SoC.
 
-QSPI1-Flash: This is a QSPI (Quad Serial Peripheral Interface) flash memory component connected to the processor/SoC.
+**QSPI1-Flash:** This is a QSPI (Quad Serial Peripheral Interface) flash memory component connected to the processor/SoC.
 
-JTAG-UART-FTDI: The block represents the JTAG (Joint Test Action Group) interface, UART (Universal Asynchronous Receiver-Transmitter), and FTDI (Future Technology Devices International) components, which are used for debugging, programming, and communication purposes.
+**JTAG-UART-FTDI:** The block represents the JTAG (Joint Test Action Group) interface, UART (Universal Asynchronous Receiver-Transmitter), and FTDI (Future Technology Devices International) components, which are used for debugging, programming, and communication purposes.
 
 
 
@@ -30,7 +30,7 @@ JTAG-UART-FTDI: The block represents the JTAG (Joint Test Action Group) interfac
 
 
 
-1.2	Introduction to Risc V 
+#### 1.1.2	Introduction to Risc V 
 
 RISC-V is an open-source instruction set architecture (ISA) based on reduced instruction set computing (RISC) concepts. It has a modular design with several common extensions, enabling for customization based on unique application demands. RISC-V architectures value simplicity, efficiency, and scalability, making them suited for a wide range of applications, from microcontrollers to high-performance computing systems. RISC-V, with its expanding ecosystem and widespread industrial adoption, has the potential to define the future of computer architecture.  The RISC-V instruction set architecture (ISA) is intended to be adaptable, with a core set of 32-bit naturally aligned instructions supplemented with variable-length extensions for increased flexibility. It supports a variety of address space variants, including 32-bit, 64-bit, and a proposed 128-bit flat address space, but has yet to be finalized due to a lack of practical experience.
 The below image shows how is the chip connected on the inside. 
@@ -38,7 +38,7 @@ The below image shows how is the chip connected on the inside.
  
 
 
-1.3	From Software Applications to Hardware
+#### 1.1.3	From Software Applications to Hardware
 This picture presents a conceptual overview of a computer system's basic architecture, emphasizing the roles of both software and hardware in enabling the device's complete functioning and capabilities.
 
 
@@ -59,13 +59,13 @@ The software, it consists of the operating system (e.g., Windows 7, Linux) and t
 
 
 
-1.4	ASIC Design Flow
+### 1.2	ASIC Design Flow
 
  
 
 This picture displays the electronic design automation (EDA) pipeline for producing an integrated circuit (IC) or chip. The procedure begins with the creation of a Register Transfer Level (RTL) description, which is subsequently converted into a gate-level network list. Static Timing Analysis (STA) and Design for Testability (DFT) approaches are used to ensure timing restrictions and testability. The following processes include floor planning, placement, clock tree synthesis, optimization, thorough routing, and different verification tests to ensure that the physical layout matches the logical design. Scripts are used to introduce phony vias and diodes in order to increase production yield. Finally, the design is converted to the GDSII format, which is the standard for semiconductor manufacturing, to complete the comprehensive EDA procedure.
 
-1.5	Simplified RTL2GDS flow
+#### 1.2.1	Simplified RTL2GDS flow
 
 The first phase in the flow is synthesis, which converts the RTL code to a netlist. A netlist is a list of a circuit's components and their connections. The next phase is clock tree synthesis (CTS), which is the process of creating a circuit to distribute the clock signal throughout the chip. After the netlist and CTS are finished, the layout and power planning are completed. The floorplan is the circuit layout, and power planning is the process of constructing the circuit such that it has enough power.
 
@@ -76,24 +76,27 @@ The first phase in the flow is synthesis, which converts the RTL code to a netli
 
 
 
-1.6	Introduction to OpenLane 
+#### 1.2.3 Introduction to OpenLane 
 
 OpenLane is an open-source, fully automated RTL to GDSII pipeline that employs a variety of popular open-source EDA tools at various phases of the IC design cycle. OpenLane is based on a suite of EDA tools that operate together to enable the entire chip design pipeline, from RTL to final GDSII layout. It consists of : 
 
-Software	Description
-Yosys	Verilog synthesis tool
-Magic	Layout editor
-Netgen	Digital netlist comparison tool
-Fault	Digital fault simulator
-CVC SPEF-Extractor	Circuit verification and analysis tool
-CU-GR	Global routing tool
-Klayout	Mask layout editor and viewer
+| Software | Description |
+|-----:|---------------|
+|  Yosys	  | Verilog synthesis tool           |
+|  Magic   | Layout editor                    |
+|  Netgen  | Digital netlist comparison tool  |
+|  Fault   | Digital fault simulator          |
+|  CVC SPEF-Extractor | Extractor	Circuit verification and analysis tool  |
+| CU-GR    | Global routing tool              |
+| Klayout  | Mask layout editor and viewer    | 
+
 
 
 
 Files inside open lane directory: 
 
-# Directory Structure
+```
+Directory Structure
 openlane/
 ├── AUTHORS.md
 ├── clean_runs.tcl
@@ -112,18 +115,14 @@ openlane/
 ├── report_generation_wrapper.py
 ├── run_designs.py
 └── scripts
-
+```
 
 We have used picorv32a for demonstration of this experiment. The contents of picorv32a are: 
-
+```
 picorv32a
 
 ├── config.tcl
 ├── runs
-│   ├── 10-04_20-22
-│   ├── 11-04_07-34
-│   ├── 12-04_08-02
-│   └── 12-04_14-17
 ├── sky130A_sky130_fd_sc_hd_config.tcl
 ├── sky130A_sky130_fd_sc_hdll_config.tcl
 ├── sky130A_sky130_fd_sc_hs_config.tcl
@@ -132,18 +131,18 @@ picorv32a
 └── src
     ├── picorv32a.sdc
     └── picorv32a.v
+```
 
-
-Working of Openlane 
+### 1.3 Working of Openlane 
 
 
 We have to start openlane with the following command: 
 
-docker ./flow.tcl – interactive.  
+``` docker ./flow.tcl – interactive ```  
 
 The interactive term is used to run every stage of the process by us, if we don’t run with interactive then the RTS to GDS II flow will be completed directly. 
 
-Once we run the command, Openlane runs, after we need to run next command in openlane, and it is package require openlane 0.9 and then we have to execute prep -design picorv32a. This will help in preparation of the design. 
+Once we run the command, Openlane runs, after we need to run next command in openlane, and it is package require openlane 0.9 and then we have to execute ``` prep -design picorv32a ``` . This will help in preparation of the design. 
 
 It will look like in the below picture once it is successfully executed. 
  
@@ -159,7 +158,7 @@ The run synthesis command will do the synthesis process and produces the results
 
 After the synthesis is successful, to see the results of synthesis process we can go into following directories, 
 
-Cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/14-04_16-30/reports/synthesis 
+```Cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/14-04_16-30/reports/synthesis```
 
 This command would take us to the directory where all the results are stored and it looks as below. 
  
@@ -176,9 +175,8 @@ The detailed analysis can be performed using the printing statistics that we get
 
 We can see that dxftp value is 1613 and the total number of wires are 14596 so, the flop ratio is 
 
-(value of dxftp/total number of cells) * 100 = (1613/14876) which is approximately 10.84%. 
+``` (value of dxftp/total number of cells) * 100 = (1613/14876) ``` which is approximately 10.84%. 
 
 After the synthesis process, we can also observe the ABC mappings, 
 
  
-![image](https://github.com/RSMadhuri66/Nasscom_VLSI_SoC_Design_Course/assets/153620454/b50abcf8-c4fc-4c8e-8936-83500b8e0ba3)
