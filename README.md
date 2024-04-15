@@ -144,7 +144,7 @@ This command would take us to the directory where all the results are stored and
 
   <img src="images/report directories.jpeg" alt="Alt Text" width="800" height="600">
 
-We can use less command to see what is in the output reports. 
+We can use ```less``` command to see what is in the output reports. 
 
 The timing report would look like this; 
 
@@ -160,4 +160,4 @@ We can see that dxftp value is 1613 and the total number of wires are 14596 so, 
 
 After the synthesis process, we can also observe the ABC mappings, 
 
-  <img src="images/mappings after synthesis.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/mapping after synthesis.jpeg" alt="Alt Text" width="800" height="600">
