@@ -273,6 +273,149 @@ The steps of Logic Synthesis:
 ### 2.3 Cell design and characterization flows
 #### 2.3.1 Inputs for cell design flow
 
+Gates, flipflops, and buffers are calles as Standard cells in the Cell Design Flow. 'Library' is the section where these standard cells are located. Additionally, there are numerous other cells in the entire set that are varied in size but have the same behavior.
+
+The Cell Design Flow has 3 main parts 
+- Inputs
+- Design Steps
+- Outputs
+
+Inputs required for cell design is PDKs, DRC, LVS rules, SPICE models, libraries, and user defined specs. Inputs that we get from the foundry are called as SPICE model parameters. 
+
+#### 2.3.2 Circuit design step
+
+The circuit design steps has 3 substeps again;
+- Circuit design
+- Layout Design
+- Characterization
+
+Circuit Design must be implemented first, and then the PMOS and NMOS transistors must be modeled in a way that satisfies the library requirements.
+
+### 2.3.2 Layout design step
+
+First, we implement the given function using PMOS and NMOS transistor connections. Then, we derive the PMOS and NMOS network graphs from this implementation, followed by finding the Euler's path for both networks. 
+
+Using this path, we create a stick diagram, representing inputs and gate connections. This diagram is then converted into a layout while adhering to design rules and user-defined specifications, utilizing Magic. 
+
+The next crucial step involves extracting parasitics from the layout to characterize it in terms of timing. Finally, we proceed to characterize the layout, obtaining information on timing, noise, and power. 
+
+The output typically includes the layout in GDS2 format along with an extracted spike netlist. These steps highlight the complexity involved in even seemingly simple circuit designs, demonstrating the thorough process required for effective layout design.
+
+#### 2.3.3 Typical characterization flow
+
+The characterization flow for the circuit involves several crucial steps to accurately analyze its behavior. First, we gather all necessary inputs, such as the layout, SPICE netlist, and subcircuit models. Then, we proceed with reading the SPICE models and the extracted netlist to understand the circuit's characteristics. Defining the behavior of the circuit is pivotal in this process. Subsequently, we integrate the subcircuit models and establish connections to the power sources to ensure proper functioning. Applying stimulus to the circuit enables us to observe its response under different conditions. Additionally, specifying the output capacitance is essential for accurate characterization. Finally, we execute the simulation by providing the necessary commands, such as transient simulation, to analyze the circuit's performance comprehensively. 
+
+### 2.4 General timing characterization parameters
+#### 2.4.1 Timing threshold definitions
+
+Timing threshold definitions in a SPICE or characterisation setup are discussed here. The slew low rise and slew high rise thresholds, 
+are important to determine the slope of the waveforms. The Slew_low_rise_thr is typically 20% to 30% from the bottom of the line.  These cutoff points play a crucial role in determining slew rates and offer valuable information about waveforms. 
+
+We looked at the importance of the in-rise and out-rise threshold are about 50% mark on the input and output waveforms. Fall waveforms characteristics are also calculated in the similar fashion.  
+
+#### 2.4.2 Propagation Delay and Transition Time 
+
+Propagation delay =  output - input threshold (determines how fast a signal propagates through a circuit). 
+                  = (out_rise_thr) - (in_rise_thr)
+
+Transition time = Low Threshold - High Threshold ( the time it takes for a signal to transition between thresholds). 
+                = (slew_high_rise_thr) - (slew_low_rise_thr)
+
+Whenever we see a negative delay, it means that the choice of the points is not right and getting negative delays is not accepted. 
+
+## Day 3 - Design library cell using Magic Layout and ngspice characterization
+### 3.1 Labs for CMOS inverter ngspice simulations
+#### 3.1.1 IO_Placer Revision
+
+In the floor planning that we obtained, the pins are spaced equally and we can change the distance between the pins using "set" command.
+To do that, we first need to look at the switches, and then we must use  "env(FP_IO_MODE) 1" and end up at "env(FP_IO_MODE) 2" and then we can proceed with the floorplanning again.
+
+```magic -T``` can be used to verify the changes. 
+
+#### 3.1.2 SPICE deck creation for CMOS inverter
+
+First we need to create a SPICE netlist. A netlist is a file that contains information about the circuit, including the components and their connections. Once we create a netlist, you can then create a SPICE tag to simulate the circuit.
+
+Initially Substrate Pins are Defined. 
+
+Next Values for PMOS and NMOS are given. 
+
+In the Next step the Nodes are identified. 
+
+Nodes are properly named, Vin, Vss, Vdd, out.
+
+Lastly a Spice Deck is created using the following format, 
+
+Drain - Gate - Source - Substrate 
+
+#### 3.1.3 SPICE simulation lab for CMOS inverter
+
+Here the Load capacitor and source are described. The supply Voltage Vdd is connected in between Vdd and 0 and It's Value is 2.5V 
+Input Voltage is connected between Vin and 0 and has a value of 2.5V 
+
+The Model File has the Complete Description about PMOS and NMOS. 
+
+After we do Spice Simulation, we get graphs. 
+
+
+#### 3.1.4 Switching Threshold Vm 
+
+We have taken 2 CMOS converters into consideration. For one PMOS width (WP) is 2.5 times greater than the NMOS width (WN) and for another both widths are equal. 
+
+The switching threshold is defined as VIN = VOUT. 
+
+During the switching transition, both the PMOS and NMOS transistors operate in the saturation region and at the switching threshold, the gate-source voltage (VGS) and the drain-source voltage (VDS) are equal. Despite opposite current flow directions in PMOS and NMOS, their magnitudes remain equal, resulting in a net current of zero, like IDSP equals -IDSN.
+
+#### 3.1.5 Static and dynamic simulation of CMOS inverter
+
+In our simulation approach, we're using transient analyses with pulse input waveforms to understand how CMOS inverters behave dynamically. By calculating rise and fall delays and determining switching thresholds, we're measuring how fast and reliable these inverters are across different configurations. We're tweaking the sizes of both PMOS and NMOS transistors to see how their proportions affect signal propagation and switching behavior. Through this process, we can understand how transistor sizing impacts the overall performance of CMOS inverters. 
+
+ Time vs Voltage is plotted and we can calculate the fall and rise delay. 
+
+ #### 3.1.6 Lab steps to git clone vsdstdcelldesign 
+
+ Here we would be just cloning git, using the below command, 
+
+ ```git clone https://github.com/nickson-jose/vsdstdcelldesign```
+
+ This will create a folder vsdstdcelldesign in Openlane directory.
+
+ The contents of the folder are : 
+
+
+ CMOS Inverter Magic File 
+
+
+ ### 3.2 CMOS Fabrication Process
+ #### 3.2.1 Create Active regions
+
+The choice of substrate is an important step in the production of semiconductors, and a P-type silicon substrate is frequently selected because of its characteristics, which include high resistivity and certain doping levels. Doping is the process of introducing foreign contaminants to change the properties of a substrate. Maintaining a doping level below the well doping is an important factor to take into account while constructing PMOS and NMOS components independently. To make areas on the substrate active for transistors, there are multiple processes involved. First, silicon dioxide is generated to serve as an insulator, and then silicon nitride is deposited. To stop interference, these layers offer isolation between transistor areas. Then, employing masks, photolithography techniques are used to delineate regions for transistor formation. 
+
+Layers of photoresist shield specific regions during later processing stages. Local oxidation of silicon (LOCOS) is the process by which the silicon dioxide layer is selectively generated in exposed locations after superfluous materials have been etched away. The field oxide is formed by this development, creating electrical isolation between transistor areas. In order to achieve well-defined active and isolating regions—which are crucial for transistor operation and the prevention of undesired electrical coupling—the silicon nitride layer is finally eliminated.
+
+ #### 3.2.2 Formation of N-well and P-well
+
+P-well and N-well cannot be done at a same time. When using photoresist for a region, we have to completely close the other region and mask & UV light, patterning of P-well can be performed. 
+
+
+ #### 3.2.3 Formation of Gate Terminal 
+
+The gate terminal regulates the threshold voltage, which is required for transistor operation. The threshold voltage equation depends on characteristics such as doping concentration and oxide capacitance. The doping concentration and oxide capacitance can be adjusted to reach the desired threshold voltage for transistors. The relationship between fabrication and threshold voltage emphasizes the significance of controlled tests in semiconductor production. Moving onward, the creation of the gate requires maintaining the doping concentration. In a multi-step process, such as a 16-mask process, the fourth mask is used to shield certain parts while exposing others to UV light for chemical action and photoresist removal. These repeating photolithography operations are essential for introducing masks or layouts during production.
+
+#### 3.2.4 Lightly doped drain (LDD) formation
+
+The necessary doping profile, such as P+, P-, and N, must be achieved throughout the fabrication process in order for transistors to function properly. This profile includes P+ for the source and drain in PMOS transistors, P- for Lightly Doped Drain (LDD) creation, and N for the substrate. Similarly, in NMOS transistors, N+ is used for the source and drain, N- is used for LDD creation, and P represents the substrate. The purpose of this profile is to counteract two major effects: the hot electron effect and the short channel impact. When the device size is reduced, the hot electron effect develops, resulting in increased electric fields and energy in carriers, which may cause reliability difficulties.
+
+
+The short channel effect occurs when drain voltage enters the gate channel, impairing the gate's capacity to control current flow. To counteract these effects, the fabrication procedure involves the creation of LDD structures. This procedure involves using masks to protect certain areas, implanting phosphorous for N-type impurities, and implanting boron for P-type impurities. Side wall spacers formed by anisotropic etching assist preserve the LDD structures during subsequent implantation procedures for source and drain development, ensuring that the proper doping profile is maintained. These specific fabrication techniques are vital in enhancing transistor performance and reliability.
+
+#### 3.2.5 Source and Drain Formation
+
+Adding a tiny coating of screen oxide prevents ions from reaching too deep during implantation by reversing their path.  We add arsenic to make certain sections of the chip more conductive, and boron to make others less conductive. Then we heat everything up to set the adjustments in place. This ensures that the chip's components perform as planned. 
+
+Finally the CMOS is put into the furnace atleast of 1000 Degrees 
+
+
 
 
 
