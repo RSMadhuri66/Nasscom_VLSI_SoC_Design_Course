@@ -421,6 +421,93 @@ Here, we begin by removing the thin screen oxide layer that had been used to pre
 
 #### 3.2.7 Higher level metal formation
 
+Higher-level metal interconnects are formed by depositing a thick layer of phosphorus- or boron-doped SiO2. Then, chemical mechanical polishing (CMP) is done to planarize this layer. After that,  SiO2 layer is etched off and contact holes are made using photolithography.  thin coating of titanium nitride (TiN) is deposited first, then thick layer of tungsten is applied, and then CMP is used to polish the layers together. Tungsten is put into the contact holes, and then another layer of metal placed. The necessary contact regions are exposed by designing this metal layer using mask, and any extra metal is removed by etching. Finally, a  layer of Si3N4 is deposited, and mask 16 is used to make the contact holes for bringing the contacts outside the chip. This completes the fabrication processand CMOS is created using multiple layers. 
+
+#### 3.2.8 Lab introduction to Sky130 basic layers layout and LEF using inverter
+
+#### 3.2.9 Lab steps to create std cell layout and extract spice netlist
+
+### 3.3 SKY Tech Labs
+
+#### 3.3.1 Lab steps to create final SPICE deck using Sky130 tech 
+
+#### 3.3.2 Lab steps to characterize inverter using sky130 model files
+
+#### 3.3.3 Lab introduction to Magic tool options and DRC rules
+
+#### 3.3.4 Lab introduction to Magic and steps to load Sky130 tech-rules
+
+#### 3.3.5 Lab introduction to Magic and steps to load Sky130 tech-rules
+
+#### 3.3.6 Lab exercise to fix poly.9 error in Sky130 tech-file
+
+#### 3.3.7 Lab exercise to implement poly resistor spacing to diff and tap
+
+#### 3.3.8 Lab challenge exercise to describe DRC error as geometrical construct 
+
+#### 3.3.9 Lab challenge to find missing or incorrect rules and fix them
+
+
+
+## Day 4 - Pre-layout timing analysis and importance of good clock tree
+### 4.1 Timing modelling using delay tables
+#### 4.1.1 Lab steps to convert grid info to track info
+
+#### 4.1.2 Lab steps to convert magic layout to std cell LEF
+
+#### 4.1.3 Introduction to timing libs and steps to include new cell in synthesis
+
+#### 4.1.4 Introduction to delay tables 
+
+Delay tables represent the input transitions and output loads, delay characteristics of every buffer. analysis of these delay tables, will help us to understand the delays caused by various clock tree buffers, considering their fluctuating input transitions and output loads. It's important to understand the timing properties of the buffers involved when applying clock gating in a clock tree. 
+
+#### 4.1.5 Delay table usage Part 2
+
+Using logical gates, such as AND or OR gates, to modify the clock signal's flow is known as clock gating. Therefore, it is possible to optimize power consumption by enabling or restricting the clock signal's propagation depending on specific conditions. Delay tables, such as two-dimensional tables (LFOs), are used to record each buffer's delay characteristics by changing the input transitions and output loads.
+
+- Each node should drive the same load to maintain consistency.
+- Buffers at the same level should be identical to avoid skew issues.
+
+#### 4.1.6 Lab steps to configure synthesis settings to fix slack and include vsdinv
+
+### 4.2 Timing analysis with ideal clocks using openSTA
+#### 4.2.1 Setup timing analysis and introduction to flip-flop setup time
+
+Before going on to real clocks in timing analysis using ideal clocks, we first need to understand its basic components and characteristics. Initially, we have a clock frequency of 1 GHz and clock period of 1 ns. Considering an example with an ideal clock network, a launch flop, a capture flop, and combinational logic between them. In order to ensure correct functioning with frequency, the combinational delay between the flops must be less than the clock period. This setup time decreases the effective time available for combinational logic operations in each clock period. As a result, the combinational delay is changed to allow setup time, making sure that the system functions consistently at the required frequency.
+
+
+#### 4.2.2  Introduction to clock jitter and uncertainty
+
+Jitter is a temporary variations in the clock period due to inherent variations in clock source.  These variations impact the effective time available for combinational logic operation within each clock period. Along with Jitter we have, setup uncertainty (SU) , setup time (S), adjusting the combinational delay. With the clock period (T) set at 1 ns, setup time at 10 ps (0.01 ns), and uncertainty at 90 ps, the combinational delay is roughly 1.9 nanoseconds. 
+
+#### 4.2.3 Lab steps to configure OpenSTA for post-synth timing analysis
+
+
+#### 4.2.4 Lab steps to optimize synthesis to reduce setup violations
+
+#### 4.2.5  Lab steps to do basic timing ECO
+
+
+### 4.3 Clock tree synthesis TritonCTS and signal integrity
+#### 4.3.1 Clock tree routing and buffering using H-Tree algorithm
+
+
+While doing the first connections, the connections to the clock port and flipflops were made in such a way that they formed a structure but the distribution wasn't equal and resulted in skew. Therefore to reduce the skew, H tree algorithm is used, it takes the midpoint of the clock path and constructs a balanced a tree structure, making sure that the clock time are similar at all flip flops, at the same time some buffers are also added to ensure signal integrity and reduces the losses because of resistance and capacitance. 
+
+
+#### 4.3.2 Lab steps to run CTS using TritonCTS
+
+
+### 4.3.3 Lab steps to verify CTS runs 
+
+
+### 4.4 Timing analysis with real clocks using openSTA
+#### 4.4.1 Setup timing analysis using real clocks 
+
+
+
+
+
 
 
 
