@@ -8,7 +8,7 @@
 
 This is the typical Arduino Leonardo Board. The highlighted part is the chip, and we are going to learn more about the design and contents of the chip in this course. This chip is designed from synthesis all the way down for production using the RTL to GDSll pipeline. Arduino consists of a programmable circuit board and a piece of software, or IDE that runs on a computer and is used to create and upload computer code to Arduino. 
 
-<img src="images/Arduino.png">
+<img src="images/Arduino.png" alt="Alt Text" width="500" height="400">
 
 The below image describes the schematic representation of a microprocessor/ S-o-C architecture, it contains processor/SoC, SDRAM, Vcc/GND, ADC, QSPL1- Flash, UART ports, SPI ports. 
 
@@ -161,3 +161,55 @@ We can see that dxftp value is 1613 and the total number of wires are 14876 so, 
 After the synthesis process, we can also observe the ABC mappings, 
 
   <img src="images/mapping after synthesis.jpeg" alt="Alt Text" width="800" height="600">
+
+
+  ## DAY 2 - Good Floorplan vs Bad Floorplan and Introduction to library cells
+  ### 2.1 Chip FloorPlan Considerations
+  #### 2.1.1 Utilization factor and Aspect Ratio
+
+This section is basically for the height & width of the core and die. Te basic Idea is to start with a Netlist. A netlist decribes the connectivity of the electronic design. To define the dimensions of the chip, the dimensions of the netlist are required i.e; the logic gates and flip flops used in the chip. 
+
+Considering the standard cell dimensions 1 unit and 1 unit and asuuming the same area for the flipflop too 
+This means area = 1unit * 1unit = 1 Sq. units. 
+
+
+Combining all the flipflops together the length and width would be 2 units and 2 units. Therefore the toatl area would be 4 sq units. 
+
+
+Core is the fundamental part where the logic is put and the die is the outer layer of the core. Die is a semiconductor material specimen on which the fundamental circuit is fabricated. If the logic completely occupies the core area then the utilization factor would be 100% i.e; 1. 
+
+Utilization Factor can be well described as, 
+
+UF = Area occupied by Netlist/Total area of the core 
+
+Aspect Ratio = Height/Width. 
+
+If the aspect ratio is 1, it means that the chip is square and when AR is any other value then it means the chip is rectangle. 
+
+#### 2.1.2 Concept of Preplaced Cells 
+
+Let's consider an example of a big combinational logic with N logic gates. Breaking down this combinational logic into granular parts i.e; breaking the circuit into 2 blocks and executing them seperately. The I/O pins of them are extended and connected. 
+
+Each box is backboxed i.e; copied and made invisible to the top netlist. The major advantage of this process is that the black box can be used multiple times on the netlist. The 2 boxes can be given to two seperate users and they can be connected accordingly. 
+
+The main concept of the preplaced cells is that the cells are executed only once and they can be reused in the netlist whenever there is a similar kind of requirement.  
+
+This arrangement of the IP's in the chip is called as Floorplanning. SInce they are placed before the placement and Routing, they are called Preplaced-cells. 
+
+#### 2.1.3 Decoupling Capacitors. 
+
+Considering a design background, to define the location of the cells, left side has all input pins and right side has all output pins. From the design summary we can get to know about the I/O pins, the blocks which are communicating with the Input Pins. 
+
+All the blocks A,B,C are placed close to the input side, these cells are placed depending on the design scenario, the location isn't touched. Once they are placed the locations cannot be changed. They should be well designed and they should be observed. 
+
+considering a circuit. In this case the circuit gets the power supply from the main supply itself, since the main supply is far from the circuit, there would be a voltage drop and losses. So, if we consider 1 volt is taken from Vdd, by the time it reaches the circuit, Vdd' will be 0.7 or 0.8 and the rest of it is drained in the voltage loss. 
+
+
+If the voltage is in undefined region then it might go towards logic 1 or logic 0. 
+
+Therefore to reduce this, Decoupled capacitors are placed. In this case, the decoupled capacitors act like a charge buffer, they are placed close to the circuit and they provide continous supply to the circuit. When the logic has to be 1 the capacitior discharges and provides the required voltage. When it has to charge, it takes the voltage from main power supply. 
+
+This eliminates the voltage drops and continously provides voltage to the circuit making sure it is not in undefined region. 
+
+
+
