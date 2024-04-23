@@ -209,7 +209,74 @@ If the voltage is in undefined region then it might go towards logic 1 or logic 
 
 Therefore to reduce this, Decoupled capacitors are placed. In this case, the decoupled capacitors act like a charge buffer, they are placed close to the circuit and they provide continous supply to the circuit. When the logic has to be 1 the capacitior discharges and provides the required voltage. When it has to charge, it takes the voltage from main power supply. 
 
-This eliminates the voltage drops and continously provides voltage to the circuit making sure it is not in undefined region. 
+This eliminates the voltage drops and continously provides voltage to the circuit making sure it is not in undefined region. The chip looks like this after placing the decoupling capacitors. 
+
+#### 2.1.4 Power Planning
+
+Considering a complete circuit with 4 Macros and logic. Connecting all the Macros to the power supply, the ground lines are tapped to the ground. Assume the 'red' path is 16 bit bus, and the supply power is source. 
+When logic is 1 it is charged to voltage V 
+
+the inverter changes from logic 0 to logic 1 or vice versa, that means all the capacitord which are charged will be discharged and all the discharged ones will be charged. Since all the charged capacitors are discharged to ground, there is a bounce, and it is called as Ground bounce. If the bounce moves to the undefined region, it might be a problem.
+
+When all the capacitors charge, then there is demand in power supply and then voltage droop occurs. As long as the droop is in Noise Margin, there shouldn't be a problem. This is called mainly because of one power supply for the whole region. Instead of single power supply, we would have multiple to facilitate the power for all the macros. 
+
+
+#### 2.1.5 Pin Placement and Logical cell placement blockage. 
+Circuit 1 is powered by clk1, circuit 2 by clk2, and they have separate inputs (Din1 and Din2) and outputs (Dout1 and Dout2). The preplaced cells and BlockA receive input from Din1, followed by input from Din2. Another set of prepared cells, BlockB, receives input from clk1 and clk2 and outputs clk. As a result, we now have four input ports: Din1, Din2, Clk1, and Clk2, as well as three output ports: Dout1, ClkOut, and Dout2. 
+
+Adding up similar design to the existing circuit, it will have 6 input ports and 5 output ports. This whole timing information and the connectivity are coded in Verilog/VHDL language and it is called a Netlist. 
+Keeping the netlist in the core and filling the space between the core and the die with pin information. The input ports are located on the left side, while the output pins are on the right. The order of placing is "random".
+
+#### 2.1.6 Steps to run floorplan using OpenLANE
+
+#### 2.1.7 Review floorplan files and steps to view floorplan
+
+#### 2.1.8 Review floorplan layout in Magic
+
+### 2.2 Library Binding and Placement 
+#### 2.2.1 Netlist Binding and Initial Place Design
+
+We have a netlist of gates, and the shapes of the gates represent their functionality. So, if we consider the NOT gate to be a tringular shape, it is actually a box with physical dimensions of width and height. Similarly, the AND gate and flipfops have shapes but they are square boxes. Every logic is essentially assumed to be a square box. All of the gates and flipflops' physical dimensions have now been set. We will provide a certain form with specific dimensions for each component of the netlist since shapes such as AND and OR gates do not exist in the actual world, so we make them square boxes. All blocks will also have a width and height, as well as the right shape.
+
+A library has all the information related to teh netlist. It will also have the information of the height and width.  Once all the shapes and sizes of the gate are described then all of them are placed on the floorplan. Since there are already preplaced cells, the placement makes sure that they are not disturbed and it will also take care, that are no other cells which are placed in that area. 
+
+#### 2.2.2 Optimize placement using estimated wire-length and capacitance
+
+In this stage we are estimating the wire length and capacitance, based on these the repeaters are inserted. 
+
+- Repeaters : These are buffers which recondition the signal integrity. One of the con of adding adding repeaters, is that, there is area loss. Using slew we can estimate if signal integrity is maintained or not.
+
+Based on signal transition (slew) we can say that it goes beyond a certain limit. 
+
+In 1st step, There is no need of any repeaters because the are close to each other and the signal intergity is maintained. 
+In second step, We would need repeaters/buffers because the distance is more. 
+
+#### 2.2.3 Final placement optimization
+
+In 3rd step too, we would need buffers because 2nd logic gatre and the flipflop 2 is very high and since we have to maintain signal intergity, a buffer has been added. 
+
+In 4th step too, we need buffers becuase the distance is huge between Inputs, gates, and flipflops. 
+
+#### 2.2.4 Need for libraries and characterization
+
+Converting the RTL to hardware is called Logic Synthesis. 
+The steps of Logic Synthesis: 
+
+- RTL-Hardware
+- Floorplan
+- Placement
+- Clock Tree Synthesis
+- Routing
+
+#### 2.2.5 Congestion aware placement using RePlAce
+
+### 2.3 Cell design and characterization flows
+#### 2.3.1 Inputs for cell design flow
+
+
+
+
+
 
 
 
