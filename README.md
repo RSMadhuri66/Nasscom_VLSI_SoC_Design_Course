@@ -415,6 +415,12 @@ Adding a tiny coating of screen oxide prevents ions from reaching too deep durin
 
 Finally the CMOS is put into the furnace atleast of 1000 Degrees 
 
+#### 3.2.6 Local interconnect formation
+
+Here, we begin by removing the thin screen oxide layer that had been used to prevent channeling effects. Next, we use a procedure known as sputtering to deposit titanium metal onto the substrate. This involves hitting the metal with argon gas. We then heat the titanium in a nitrogen environment, forming low-resistance contacts of titanium silicide (TiSi2) and titanium nitride (TiN). These contacts are essential for local connections on the semiconductor. This technique, known as RCA cleaning, ensures that only the desired contacts remain. These contacts can now be connected internally or raised to higher metal levels for further connection.
+
+#### 3.2.7 Higher level metal formation
+
 
 
 
