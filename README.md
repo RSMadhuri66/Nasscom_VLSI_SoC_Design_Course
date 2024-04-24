@@ -213,9 +213,15 @@ Considering a circuit. In this case the circuit gets the power supply from the m
 
 If the voltage is in undefined region then it might go towards logic 1 or logic 0. 
 
+<img src="images/Noise Margin.png" alt="Alt Text" width="600" height="400">
+
 Therefore to reduce this, Decoupled capacitors are placed. In this case, the decoupled capacitors act like a charge buffer, they are placed close to the circuit and they provide continous supply to the circuit. When the logic has to be 1 the capacitior discharges and provides the required voltage. When it has to charge, it takes the voltage from main power supply. 
 
+<img src="images/Decoupling Capacitors.png" alt="Alt Text" width="600" height="400">
+
 This eliminates the voltage drops and continously provides voltage to the circuit making sure it is not in undefined region. The chip looks like this after placing the decoupling capacitors. 
+
+<img src="images/Chip.png" alt="Alt Text" width="600" height="400">
 
 #### 2.1.4 Power Planning
 
