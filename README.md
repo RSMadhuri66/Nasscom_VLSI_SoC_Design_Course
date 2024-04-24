@@ -556,7 +556,7 @@ Then we should run the Cts
 
  Once the cts is executed successfully it will look like this. You will see " Clock Tree Synthesis was successful". 
 
- <img src="images/cts run.PNG" alt="Alt Text" width="800" height="600">
+ <img src="images/cts run.PNG" alt="Alt Text">
 
 
 #### 4.4.5 Lab steps to observe impact of bigger CTS buffers on setup and hold timing 
@@ -604,7 +604,7 @@ gen_pdn -- generate the pdn
 
 ```
 
-<img src="images/gen pdn.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/gen pdn.PNG" alt="Alt Text" >
 
 
 #### 5.1.2 Basics of global and detail routing and configure TritonRoute 
@@ -615,7 +615,7 @@ the command to perform routing is ```run_route```.
 
 Once the routing is done, it would look something like this. 
 
-<img src="images/routing done.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/routing done.PNG" alt="Alt Text" >
 
 
 #### 5.1.3 Routing topology algorithm and final files list post-route 
@@ -657,15 +657,15 @@ read_spef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/routing/pico
 
 ```
 
-<img src="images/after route.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/after route.PNG" alt="Alt Text" >
 
-<img src="images/report checks and read spef.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/report checks and read spef.PNG" alt="Alt Text" >
 
-<img src="images/met slack.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/met slack.PNG" alt="Alt Text" >
 
-<img src="images/final route cells.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/final route cells.PNG" alt="Alt Text">
 
-<img src="images/pico file.PNG" alt="Alt Text" width="800" height="600">
+<img src="images/pico file.PNG" alt="Alt Text" >
 
 
 
