@@ -172,6 +172,7 @@ This section is basically for the height & width of the core and die. Te basic I
 Considering the standard cell dimensions 1 unit and 1 unit and asuuming the same area for the flipflop too 
 This means area = 1unit * 1unit = 1 Sq. units. 
 
+<img src="images/Area.png" alt="Alt Text" width="600" height="400">
 
 Combining all the flipflops together the length and width would be 2 units and 2 units. Therefore the toatl area would be 4 sq units. 
 
