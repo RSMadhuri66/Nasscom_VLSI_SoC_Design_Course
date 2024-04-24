@@ -550,8 +550,35 @@ Combinational Delay > hold time of capture flip flop. Right after clk reaches to
 ### 5.1 Power Distribution Network and routing 
 #### 5.1.1 Lab steps to build power distribution network 
 
+The following commands are used for generating at ```pdn``` 
+
+```
+docker ./flow.tcl  -- run openlane
+
+package require openlane 0.9 -- get the package
+
+prep -design picorv32a -tag 18-04_20-08-- prepare the design
+
+we have to always make sure to run the prep again before geerating Power Distribution Network (PDN)
+
+echo $::env(CURRENT_DEF) -- get the current def
+
+gen_pdn -- generate the pdn
+
+```
+
+<img src="images/gen pdn.PNG" alt="Alt Text" width="800" height="600">
+
+
 #### 5.1.2 Basics of global and detail routing and configure TritonRoute 
 
+The final Step of the process is routing. It takes a very long time to run, once done, it displays the values of wns and tns. 
+
+the command to perform routing is ```run_route```. 
+
+Once the routing is done, it would look something like this. 
+
+<img src="images/routing done.PNG" alt="Alt Text" width="800" height="600">
 
 
 #### 5.1.3 Routing topology algorithm and final files list post-route 
