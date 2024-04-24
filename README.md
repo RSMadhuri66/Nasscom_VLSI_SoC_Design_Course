@@ -191,7 +191,11 @@ If the aspect ratio is 1, it means that the chip is square and when AR is any ot
 
 Let's consider an example of a big combinational logic with N logic gates. Breaking down this combinational logic into granular parts i.e; breaking the circuit into 2 blocks and executing them seperately. The I/O pins of them are extended and connected. 
 
+<img src="Cut circuit.png" alt="Alt Text" width="600" height="400">
+
 Each box is backboxed i.e; copied and made invisible to the top netlist. The major advantage of this process is that the black box can be used multiple times on the netlist. The 2 boxes can be given to two seperate users and they can be connected accordingly. 
+
+<img src="images/Black box.png" alt="Alt Text" width="600" height="400">
 
 The main concept of the preplaced cells is that the cells are executed only once and they can be reused in the netlist whenever there is a similar kind of requirement.  
 
