@@ -542,10 +542,47 @@ Combinational Delay > hold time of capture flip flop. Right after clk reaches to
 
 #### 4.4.4 Lab steps to execute OpenSTA with right timing libraries and CTS assignment
 
+We need to check the current value of the cts_clk_buffer_list 
+
+```echo $::env(CTS_CLK_BUFFER_LIST)```
+
+After this we should see the current def value. 
+
+``` echo $::env(CURRENT_DEF) ``` 
+
+Then we should run the Cts
+
+``` run_cts ```
+
+ Once the cts is executed successfully it will look like this. You will see " Clock Tree Synthesis was successful". 
+
+ <img src="images/cts run.PNG" alt="Alt Text" width="800" height="600">
+
+
 #### 4.4.5 Lab steps to observe impact of bigger CTS buffers on setup and hold timing 
 
+We should follow the below commands: 
 
-## Day 5 Final steps for RTL2GDS using tritonRoute and openSTA
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty /openLANE_flow/vsdstdcelldesign/libs/sky130_fd_sc_hd__typical.lib
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+report_clock_skew -hold
+report_clock_skew -setup
+exit
+```
+
+
+
+## Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
 
 ### 5.1 Power Distribution Network and routing 
 #### 5.1.1 Lab steps to build power distribution network 
