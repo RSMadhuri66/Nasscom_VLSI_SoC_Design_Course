@@ -519,7 +519,11 @@ In our clock set up, we verified that all of the clock's factors, such as its st
 #### 4.3.3 Lab steps to run CTS using TritonCTS
 
 
+
+
 ### 4.3.4 Lab steps to verify CTS runs 
+
+
 
 
 ### 4.4 Timing analysis with real clocks using openSTA
@@ -539,6 +543,24 @@ In hold time analysis the pulse is sent to both launch and capture flip flop.
 Combinational Delay > hold time of capture flip flop. Right after clk reaches to launch flip flop, it takes 2buffer delay (∆1) and when it reaches to capture flip flop, it takes 3buffer delay (∆2). In this cases the uncertinity is same for both flip flops. 
 
 #### 4.4.3 Lab steps to analyze timing with real clocks using OpenSTA
+
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty /openLANE_flow/vsdstdcelldesign/libs/sky130_fd_sc_hd__typical.lib
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+report_clock_skew -hold
+report_clock_skew -setup
+exit
+```
+<img src="images/imp.PNG" alt="Alt Text">
 
 #### 4.4.4 Lab steps to execute OpenSTA with right timing libraries and CTS assignment
 
