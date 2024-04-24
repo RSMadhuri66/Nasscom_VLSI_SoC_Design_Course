@@ -191,7 +191,7 @@ If the aspect ratio is 1, it means that the chip is square and when AR is any ot
 
 Let's consider an example of a big combinational logic with N logic gates. Breaking down this combinational logic into granular parts i.e; breaking the circuit into 2 blocks and executing them seperately. The I/O pins of them are extended and connected. 
 
-<img src="Cut circuit.png" alt="Alt Text" width="600" height="400">
+<img src="images/Cut circuit.png" alt="Alt Text" width="600" height="400">
 
 Each box is backboxed i.e; copied and made invisible to the top netlist. The major advantage of this process is that the black box can be used multiple times on the netlist. The 2 boxes can be given to two seperate users and they can be connected accordingly. 
 
@@ -207,8 +207,9 @@ Considering a design background, to define the location of the cells, left side 
 
 All the blocks A,B,C are placed close to the input side, these cells are placed depending on the design scenario, the location isn't touched. Once they are placed the locations cannot be changed. They should be well designed and they should be observed. 
 
-considering a circuit. In this case the circuit gets the power supply from the main supply itself, since the main supply is far from the circuit, there would be a voltage drop and losses. So, if we consider 1 volt is taken from Vdd, by the time it reaches the circuit, Vdd' will be 0.7 or 0.8 and the rest of it is drained in the voltage loss. 
+Considering a circuit. In this case the circuit gets the power supply from the main supply itself, since the main supply is far from the circuit, there would be a voltage drop and losses. So, if we consider 1 volt is taken from Vdd, by the time it reaches the circuit, Vdd' will be 0.7 or 0.8 and the rest of it is drained in the voltage loss. 
 
+<img src="images/Decouple circuit.png" alt="Alt Text" width="600" height="400">
 
 If the voltage is in undefined region then it might go towards logic 1 or logic 0. 
 
