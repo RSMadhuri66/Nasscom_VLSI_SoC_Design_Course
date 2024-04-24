@@ -556,15 +556,15 @@ Combinational Delay > hold time of capture flip flop. Right after clk reaches to
 
 #### 5.1.3 Routing topology algorithm and final files list post-route 
 
-<img src="images/after route.png" alt="Alt Text" width="800" height="600">
+<img src="images/after route.PNG" alt="Alt Text" width="800" height="600">
 
-<img src="images/report checks and read spef.png" alt="Alt Text" width="800" height="600">
+<img src="images/report checks and read spef.PNG" alt="Alt Text" width="800" height="600">
 
-<img src="images/met slack" alt="Alt Text" width="800" height="600">
+<img src="images/met slack.PNG" alt="Alt Text" width="800" height="600">
 
-<img src="images/final route cells.png" alt="Alt Text" width="800" height="600">
+<img src="images/final route cells.PNG" alt="Alt Text" width="800" height="600">
 
-<img src="images/pico file.png" alt="Alt Text" width="800" height="600">
+<img src="images/pico file.PNG" alt="Alt Text" width="800" height="600">
 
 
 
