@@ -556,6 +556,43 @@ Combinational Delay > hold time of capture flip flop. Right after clk reaches to
 
 #### 5.1.3 Routing topology algorithm and final files list post-route 
 
+After routing we would be checking if the slack requirements are met. Then we would verify our Final picorv32a design with all the connections. 
+
+The below commands are used for the poste route check. 
+
+```
+/opening to Openroad
+openroad
+
+/reading lef file 
+read_lef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/tmp/merged.lef
+
+/reading def file 
+read_def /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/cts/picorv32a.cts.def
+
+/write db
+write_db pico_cts.db
+
+/read db
+read_db pico_cts.db
+
+/read the verilog file
+read_verilog /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/synthesis/picorv32a.synthesis_cts.v
+
+/read lib file
+read_liberty /openLANE_flow/vsdstdcelldesign/libs/sky130_fd_sc_hd__typical.lib
+
+/ link the design
+link_design picorv32a
+
+/reading sdc 
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+/read spef file 
+read_spef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/routing/picorv32a.spef
+
+```
+
 <img src="images/after route.PNG" alt="Alt Text" width="800" height="600">
 
 <img src="images/report checks and read spef.PNG" alt="Alt Text" width="800" height="600">
