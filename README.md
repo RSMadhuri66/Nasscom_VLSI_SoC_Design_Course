@@ -518,13 +518,21 @@ In our clock set up, we verified that all of the clock's factors, such as its st
 
 #### 4.3.3 Lab steps to run CTS using TritonCTS
 
+Now we have to run the cts. But before that we have to run the whole process from preparation to placement again and then we have to run the CTS. 
 
 
 
 ### 4.3.4 Lab steps to verify CTS runs 
 
+To verify CTS Rus, we must use ``` OpenRoad```.  
 
+We have to read the merged.lef file 
 
+``` read_lef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/tmp/merged.lef ```
+
+Then we should write pico_cts.db 
+
+``` write_db pico_cts.db ``` 
 
 ### 4.4 Timing analysis with real clocks using openSTA
 #### 4.4.1 Setup timing analysis using real clocks 
