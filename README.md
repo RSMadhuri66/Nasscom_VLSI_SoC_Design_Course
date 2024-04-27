@@ -544,10 +544,13 @@ Next we running synthesis using ``` run_synthesis ``` command.
 <img src="images/synthesis improvement.PNG" alt="Alt Text">
 
 Next we would run the floorplan uisng ``` run_floorplan ``` command.  I encountered an error while perfoming the floorplan operation, the floor plan was initially failing, so I ran the below commands to remove the error and run successful floorplan. 
-   
+
+```
    init_floorplan
    place_io
    tap_decap_or
+
+```
 
 <img src="images/floor plan error.PNG" alt="Alt Text">
 
