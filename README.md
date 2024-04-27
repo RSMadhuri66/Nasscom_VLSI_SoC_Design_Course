@@ -504,6 +504,17 @@ Jitter is a temporary variations in the clock period due to inherent variations 
 
 #### 4.2.5  Lab steps to do basic timing ECO
 
+Here we have to replace sky130_fd_sc_hd__or2_2 with sky130_fd_sc_hd__or3_2
+
+So first we would report all the connections to net 
+
+``` report_net -connections _11672``` 
+
+Next we would replace sky130_fd_sc_hd__or3_2
+
+<img src="images/replacing cell.PNG" alt="Alt Text">
+
+<img src="images/reduced slack 23.PNG" alt="Alt Text">
 
 ### 4.3 Clock tree synthesis TritonCTS and signal integrity
 #### 4.3.1 Clock tree routing and buffering using H-Tree algorithm
@@ -541,7 +552,7 @@ Here are overwriting the previous verilog file that was written and later to tha
 
 Next we running synthesis using ``` run_synthesis ``` command. 
 
-<img src="images/synthesis improvement.PNG" alt="Alt Text">
+<img src="images/synthesis Improvement.PNG" alt="Alt Text">
 
 Next we would run the floorplan uisng ``` run_floorplan ``` command.  I encountered an error while perfoming the floorplan operation, the floor plan was initially failing, so I ran the below commands to remove the error and run successful floorplan. 
 
