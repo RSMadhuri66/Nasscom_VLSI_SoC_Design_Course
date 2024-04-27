@@ -520,6 +520,46 @@ In our clock set up, we verified that all of the clock's factors, such as its st
 
 Now we have to run the cts. But before that we have to run the whole process from preparation to placement again and then we have to run the CTS. 
 
+Here are overwriting the previous verilog file that was written and later to that we are adding the following commands. 
+
+```
+
+   prep -design picorv32a -tag 18-04_20-08 -overwrite
+   set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+   add_lefs -src $lefs
+   set ::env(SYNTH_STRATEGY) "DELAY 3"
+   set ::env(SYNTH_SIZING) 1
+ 
+
+```
+
+<img src="images/setting up openlane.PNG" alt="Alt Text">
+
+<img src="images/overwrite verilog.PNG" alt="Alt Text">
+
+<img src="images/overwritten file.PNG" alt="Alt Text">
+
+Next we running synthesis using ``` run_synthesis ``` command. 
+
+<img src="images/synthesis improvement.PNG" alt="Alt Text">
+
+Next we would run the floorplan uisng ``` run_floorplan ``` command.  I encountered an error while perfoming the floorplan operation, the floor plan was initially failing, so I ran the below commands to remove the error and run successful floorplan. 
+   
+   init_floorplan
+   place_io
+   tap_decap_or
+
+<img src="images/floor plan error.PNG" alt="Alt Text">
+
+<img src="images/init.PNG" alt="Alt Text">
+   
+Next we have to run placement using ``` run_placement ``` command. 
+
+<img src="images/cts.PNG" alt="Alt Text">
+
+After CTS is successfully run, it would show something like this 
+
+<img src="images/cts run.PNG" alt="Alt Text">
 
 
 ### 4.3.4 Lab steps to verify CTS runs 
@@ -533,6 +573,9 @@ We have to read the merged.lef file
 Then we should write pico_cts.db 
 
 ``` write_db pico_cts.db ``` 
+
+
+
 
 ### 4.4 Timing analysis with real clocks using openSTA
 #### 4.4.1 Setup timing analysis using real clocks 
