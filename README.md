@@ -296,11 +296,11 @@ We can see the buffer from the below image.
 
 We have a netlist of gates, and the shapes of the gates represent their functionality. So, if we consider the NOT gate to be a tringular shape, it is actually a box with physical dimensions of width and height. Similarly, the AND gate and flipfops have shapes but they are square boxes. Every logic is essentially assumed to be a square box. All of the gates and flipflops' physical dimensions have now been set. We will provide a certain form with specific dimensions for each component of the netlist since shapes such as AND and OR gates do not exist in the actual world, so we make them square boxes. All blocks will also have a width and height, as well as the right shape.
 
-<img src="images/Placement Big image.PNG" alt="Alt Text">
+<img src="images/Placement Big image.png" alt="Alt Text">
 
 A library has all the information related to teh netlist. It will also have the information of the height and width.  Once all the shapes and sizes of the gate are described then all of them are placed on the floorplan. Since there are already preplaced cells, the placement makes sure that they are not disturbed and it will also take care, that are no other cells which are placed in that area. 
 
-<img src="images/Flip flops and Placement.PNG" alt="Alt Text">
+<img src="images/Flip flops and Placement.png" alt="Alt Text">
 
 #### 2.2.2 Optimize placement using estimated wire-length and capacitance
 
@@ -313,7 +313,7 @@ Based on signal transition (slew) we can say that it goes beyond a certain limit
 In 1st step, There is no need of any repeaters because the are close to each other and the signal intergity is maintained. 
 In second step, We would need repeaters/buffers because the distance is more. 
 
-<img src="images/1 and 2.PNG" alt="Alt Text">
+<img src="images/1 and 2.png" alt="Alt Text">
 
 #### 2.2.3 Final placement optimization
 
@@ -321,7 +321,7 @@ In 3rd step too, we would need buffers because 2nd logic gatre and the flipflop 
 
 In 4th step too, we need buffers becuase the distance is huge between Inputs, gates, and flipflops. 
 
-<img src="images/3 and 4.PNG" alt="Alt Text">
+<img src="images/3 and 4.png" alt="Alt Text">
 
 #### 2.2.4 Need for libraries and characterization
 
