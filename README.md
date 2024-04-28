@@ -517,7 +517,7 @@ echo $::env(SYNTH_DRIVING_CELL)
 
 then we to run synthesis using ``` run_synthesis ``` command. 
 
-<img src="images/prep abd overwrite.PNG" alt="Alt Text">
+<img src="images/prep and overwrite.PNG" alt="Alt Text">
 
 We have to modify the config file, 
 
@@ -527,7 +527,7 @@ We have to modify the config file,
 
 After this we have to run floorplan and run placement using ``` run_floorplan ``` and  ``` run_placement ``` 
 
-<img src="images/commands used to run floorplan sucessfully.PNG" alt="Alt Text">
+<img src="images/commands used to run floorplan successfully.PNG" alt="Alt Text">
 
 We can see the placement in the below image, 
 
@@ -654,7 +654,7 @@ Here are overwriting the previous verilog file that was written and later to tha
 
 <img src="images/overwritten file.PNG" alt="Alt Text">
 
-Next we running synthesis using ``` run_synthesis ``` command. 
+Next we running synthesis using ``` run_synthesis ``` command 
 
 <img src="images/synthesis Improvement.PNG" alt="Alt Text">
 
