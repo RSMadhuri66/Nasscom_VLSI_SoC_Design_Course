@@ -472,6 +472,8 @@ Higher-level metal interconnects are formed by depositing a thick layer of phosp
 
 #### 4.1.2 Lab steps to convert magic layout to std cell LEF
 
+
+
 #### 4.1.3 Introduction to timing libs and steps to include new cell in synthesis
 
 #### 4.1.4 Introduction to delay tables 
@@ -487,6 +489,66 @@ Using logical gates, such as AND or OR gates, to modify the clock signal's flow 
 
 #### 4.1.6 Lab steps to configure synthesis settings to fix slack and include vsdinv
 
+We have to overwrite the picorv32a file and synthesis, 
+
+```
+
+prep -design picorv32a -tag 01-04_12-54 -overwrite
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+
+add_lefs -src $lefs
+
+echo $::env(SYNTH_STRATEGY)
+
+echo $::env(SYNTH_BUFFERING)
+
+echo $::env(SYNTH_SIZING)
+
+set ::env(SYNTH_SIZING) 1
+
+echo $::env(SYNTH_DRIVING_CELL)
+
+
+
+```
+
+<img src="images/overwrite.PNG" alt="Alt Text">
+
+then we to run synthesis using ``` run_synthesis ``` command. 
+
+<img src="images/prep abd overwrite.PNG" alt="Alt Text">
+
+We have to modify the config file, 
+
+<img src="images/modified config file.PNG" alt="Alt Text">
+
+<img src="images/reduced slack.PNG" alt="Alt Text">
+
+After this we have to run floorplan and run placement using ``` run_floorplan ``` and  ``` run_placement ``` 
+
+<img src="images/commands used to run floorplan sucessfully.PNG" alt="Alt Text">
+
+We can see the placement in the below image, 
+
+<img src="images/modified placement.PNG" alt="Alt Text">
+
+zommed image, 
+
+<img src="images/zommed floorplan.PNG" alt="Alt Text">
+
+the ``` sky_vsdinv ``` 
+
+<img src="images/sky_vsdinv.PNG" alt="Alt Text">
+
+the tkcon image 
+
+<img src="images/expand.PNG" alt="Alt Text">
+
+The final placement looks like this, 
+
+<img src="images/placement sky130A.PNG" alt="Alt Text">
+
 ### 4.2 Timing analysis with ideal clocks using openSTA
 #### 4.2.1 Setup timing analysis and introduction to flip-flop setup time
 
@@ -499,12 +561,52 @@ Jitter is a temporary variations in the clock period due to inherent variations 
 
 #### 4.2.3 Lab steps to configure OpenSTA for post-synth timing analysis
 
+Here again we would configure the Post STA configurations, this step is important to check if picorv32a has timing violations. 
+
+we have to create a new sta config file using ``` vi pre_sta.conf ``` and then place in src directory. 
+
+<img src="images/sta config file.PNG" alt="Alt Text">
+
+Then we need to create my_base.sdc file to define all the environment variables and place it in the src directory. 
+
+<img src="images/my base file.PNG" alt="Alt Text">
+
+Then run the pre_sta.conf file using sta ```pre_sta.conf```  command to observe the slack. 
+
+<img src="images/sta config 1.PNG" alt="Alt Text">
+
+<img src="images/sta config 2.PNG" alt="Alt Text">
 
 #### 4.2.4 Lab steps to optimize synthesis to reduce setup violations
 
+Here we have to overwrite the picorv32a file and then add FANOUT Parameters. We can use the below commands and run the synthesis again.  
+
+```
+prep -design picorv32a -tag 18-04_20-08 -overwrite
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+
+add_lefs -src $lefs
+
+set ::env(SYNTH_SIZING) 1
+
+set ::env(SYNTH_MAX_FANOUT) 4
+
+echo $::env(SYNTH_DRIVING_CELL)
+
+run_synthesis
+
+```
+I forgot to take the screenshots after running the synthesis part again, so I'm adding up the history of what commands I have run. 
+
+<img src="images/max fanout.PNG" alt="Alt Text">
+
+next, we have to run the pre_sta.conf again and check the values. 
+
+
 #### 4.2.5  Lab steps to do basic timing ECO
 
-Here we have to replace sky130_fd_sc_hd__or2_2 with sky130_fd_sc_hd__or3_2
+Here we have to replace sky130_fd_sc_hd__or3_2 with sky130_fd_sc_hd__or3_2
 
 So first we would report all the connections to net 
 
@@ -513,6 +615,8 @@ So first we would report all the connections to net
 Next we would replace sky130_fd_sc_hd__or3_2
 
 <img src="images/replacing cell.PNG" alt="Alt Text">
+
+To generate the timing output ``` report_checks -fields {net cap slew input_pins} -digits  ```
 
 <img src="images/reduced slack 23.PNG" alt="Alt Text">
 
