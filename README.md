@@ -442,28 +442,88 @@ Higher-level metal interconnects are formed by depositing a thick layer of phosp
 
 #### 3.2.8 Lab introduction to Sky130 basic layers layout and LEF using inverter
 
+In Sky130, every color represents a separate layer. Here, the first layer is for local connection, which is displayed in blue_purple, the second layer is metal 1, which is shown in light purple, and metal 2 is shown in pink. Solid line indicates N-well. Green represents the N-diffusion area. Red color is for polysilicon gate. Similarly, the brown represents P-diffusion. In the Tckon window, we can see PMOS and NMOS layers after selection. Using these techniques we can tell the CMOS inverter is working well. 
+
+<img src="images/cell design.PNG" alt="Alt Text">
+
+<img src="images/pmos and nmos.PNG" alt="Alt Text">
+
 #### 3.2.9 Lab steps to create std cell layout and extract spice netlist
 
-### 3.3 SKY Tech Labs
+Here we are using extract all in tckon window. 
 
+<img src="images/extract all.PNG" alt="Alt Text">
+
+After this, the .ext file is placed in ``` vsdstdcelldesign folder ``` , and in tckon window we have to run ``` ext2spice cthresh 0 rthresh 0 ``` and then type ``` ext2spice ```. 
+
+<img src="images/spice file.PNG" alt="Alt Text">
+
+### 3.3 SKY Tech Labs
 #### 3.3.1 Lab steps to create final SPICE deck using Sky130 tech 
+
+We have to edit the spice values, the below image shows the values of the spice files. 
+
+<img src="images/spice file with values.PNG" alt="Alt Text">
+
+Then we have to run ngspice using command ``` ngspice sky130_inv.spice ```. 
+
+<img src="images/spice values.PNG" alt="Alt Text">
+
+then we have to ``` plot y vs time a ``` in ngspice terminal 
+
+<img src="images/plot.PNG" alt="Alt Text">
+
+<img src="images/plot y vs time.PNG" alt="Alt Text">
 
 #### 3.3.2 Lab steps to characterize inverter using sky130 model files
 
+Here we can find out all the rise, fall, propagation delays from this. 
+
+<img src="images/Rise and Fall Delay.PNG" alt="Alt Text">
+
 #### 3.3.3 Lab introduction to Magic tool options and DRC rules
+
+To download the labs, we have to go to the home directory and run ``` wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz ```  and we have to extract the file using ``` tar xfz drc_tests.tgz ``` and then we have to drc_tests folder and see if it is properly extracted or not. 
+
+<img src="images/downloading drc.PNG" alt="Alt Text"> 
+
+Tor un Magic we should use, ``` magic -d XR  & ``` command. 
 
 #### 3.3.4 Lab introduction to Magic and steps to load Sky130 tech-rules
 
-#### 3.3.5 Lab introduction to Magic and steps to load Sky130 tech-rules
+To run magic we should the command ``` magic -d XR ``` 
 
-#### 3.3.6 Lab exercise to fix poly.9 error in Sky130 tech-file
+And then we have to add up met3.mag file. 
 
-#### 3.3.7 Lab exercise to implement poly resistor spacing to diff and tap
+<img src="images/magic met3.PNG" alt="Alt Text">
 
-#### 3.3.8 Lab challenge exercise to describe DRC error as geometrical construct 
+Next we will select an area in the file and check ``` drc why ``` in tckon file 
 
-#### 3.3.9 Lab challenge to find missing or incorrect rules and fix them
+<img src="images/cif see.PNG" alt="Alt Text">
 
+Next, select a blank area and place the cursor over selected place icon. Then execute the command cif see VIA2 in the tkcon tab. Then all the balck squares will appear in the selected area. 
+
+<img src="images/dimesions of black squares.PNG" alt="Alt Text">
+
+#### 3.3.5 Lab exercise to implement poly resistor spacing to diff and tap
+
+We have to edit sky130A.tech file and execute the tkon file and load poly 9 file in that. 
+
+<img src="images/dimesions of emty poly.PNG" alt="Alt Text">
+
+#### 3.3.6 Lab challenge exercise to describe DRC error as geometrical construct 
+
+we have to make changes here in sky130A.tech 
+
+<img src="images/modfing nwell rules.PNG" alt="Alt Text">
+
+<img src="images/nwell.PNG" alt="Alt Text">
+
+#### 3.3.7 Lab challenge to find missing or incorrect rules and fix them
+
+We have to open magic tool and execute the commands drc style drc(full) and drc check and add up tye nsubstrate in the n well. 
+
+<img src="images/nsubstratecontact.PNG" alt="Alt Text">
 
 
 ## Day 4 - Pre-layout timing analysis and importance of good clock tree
@@ -489,7 +549,6 @@ The port name along with its values will now need to be defined. Different ports
 
 <img src="images/vsdinv.PNG" alt="Alt Text">
 
-<img src="images/overwrite.PNG" alt="Alt Text">
 
 
 #### 4.1.3 Introduction to timing libs and steps to include new cell in synthesis
