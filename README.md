@@ -244,6 +244,8 @@ Circuit 1 is powered by clk1, circuit 2 by clk2, and they have separate inputs (
 Adding up similar design to the existing circuit, it will have 6 input ports and 5 output ports. This whole timing information and the connectivity are coded in Verilog/VHDL language and it is called a Netlist. 
 Keeping the netlist in the core and filling the space between the core and the die with pin information. The input ports are located on the left side, while the output pins are on the right. The order of placing is "random".
 
+<img src="images/.PNG" alt="Alt Text">
+
 #### 2.1.6 Steps to run floorplan using OpenLANE
 
 Check the README.md. In the readme file we can see about the Aspect and utilization ratios. We will be able to see the Power Distribution network preset values as well. All the details of floorplan would be given in the readme file. 
@@ -574,7 +576,7 @@ Next, select a blank area and place the cursor over selected place icon. Then ex
 
 We have to edit sky130A.tech file and execute the tkon file and load poly 9 file in that. 
 
-<img src="images/dimesions of emty poly.PNG" alt="Alt Text">
+<img src="images/dimensions of emty poly.PNG.PNG" alt="Alt Text">
 
 #### 3.3.6 Lab challenge exercise to describe DRC error as geometrical construct 
 
