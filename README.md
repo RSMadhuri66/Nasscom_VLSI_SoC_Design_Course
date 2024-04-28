@@ -250,6 +250,9 @@ Keeping the netlist in the core and filling the space between the core and the d
 
 #### 2.1.8 Review floorplan layout in Magic
 
+
+
+
 ### 2.2 Library Binding and Placement 
 #### 2.2.1 Netlist Binding and Initial Place Design
 
@@ -286,6 +289,16 @@ The steps of Logic Synthesis:
 - Routing
 
 #### 2.2.5 Congestion aware placement using RePlAce
+
+Here we run the placement. The placement is done in 2 types, global placement and detailed placement, So when we are running placement it means that we are actually running global placement and the main purpose of this placement is to reduce the wire length. 
+
+ <img src="images/placement done.PNG" alt="Alt Text">
+
+ <img src="images/standard cells placement.PNG" alt="Alt Text">
+
+ The zoomed imaged of the Standard cells 
+
+ <img src="images/standard cells zoomed.PNG" alt="Alt Text">
 
 ### 2.3 Cell design and characterization flows
 #### 2.3.1 Inputs for cell design flow
@@ -397,7 +410,9 @@ In our simulation approach, we're using transient analyses with pulse input wave
 
  <img src="images/cloning git.PNG" alt="Alt Text">
 
- This will create a folder vsdstdcelldesign in Openlane directory.
+ This will create a folder vsdstdcelldesign in Openlane directory and copy the file ``` sky130A.tech ``` in this vsdstdcelldesign folder. 
+
+  <img src="images/copying the sky file.PNG" alt="Alt Text">
 
  The contents of the folder are : 
  
