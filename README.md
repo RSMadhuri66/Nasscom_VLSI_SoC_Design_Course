@@ -246,11 +246,42 @@ Keeping the netlist in the core and filling the space between the core and the d
 
 #### 2.1.6 Steps to run floorplan using OpenLANE
 
+Check the README.md. In the readme file we can see about the Aspect and utilization ratios. We will be able to see the Power Distribution network preset values as well. All the details of floorplan would be given in the readme file. 
+
 #### 2.1.7 Review floorplan files and steps to view floorplan
+
+Next we have to check the floorplan details, 
+
+ <img src="images/florplan default details.PNG" alt="Alt Text">
+
+ Then, we need to run floorplan by using ```run_floorplan``` command
+
+ <img src="images/succesful floorplan.PNG" alt="Alt Text">
+
+ Floorplan def file
+
+ <img src="images/floorplan def.PNG" alt="Alt Text">
+
+ Floorplan image 
+
+ Check the README.md 
+
+ <img src="images/magic.PNG" alt="Alt Text">
 
 #### 2.1.8 Review floorplan layout in Magic
 
+We review floorplan here. The input/output pins are equidistant, and we can hover on the picture and select S, this will select the file and then we can zoom by using ```Z``` and then to zoom out, we should be using ``` Shift + Z ```.
 
+ <img src="images/magnified.PNG" alt="Alt Text">
+
+ <img src="images/what tkcon.PNG" alt="Alt Text">
+
+ <img src="images/what for vertical.PNG" alt="Alt Text">
+
+We can see the buffer from the below image. 
+
+
+ <img src="images/buffer.PNG" alt="Alt Text">
 
 
 ### 2.2 Library Binding and Placement 
