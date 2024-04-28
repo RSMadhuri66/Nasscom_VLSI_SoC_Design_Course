@@ -501,9 +501,9 @@ Next we will select an area in the file and check ``` drc why ``` in tckon file
 
 <img src="images/cif see.PNG" alt="Alt Text">
 
-Next, select a blank area and place the cursor over selected place icon. Then execute the command cif see VIA2 in the tkcon tab. Then all the balck squares will appear in the selected area. 
+Next, select a blank area and place the cursor over selected place icon. Then execute the command ``` cif see VIA2 ``` in the tkcon tab. Then all the black squares will appear in the selected area. 
 
-<img src="images/dimesions of black squares.PNG" alt="Alt Text">
+<img src="images/black squares.PNG" alt="Alt Text">
 
 #### 3.3.5 Lab exercise to implement poly resistor spacing to diff and tap
 
