@@ -468,13 +468,43 @@ Higher-level metal interconnects are formed by depositing a thick layer of phosp
 
 ## Day 4 - Pre-layout timing analysis and importance of good clock tree
 ### 4.1 Timing modelling using delay tables
+
 #### 4.1.1 Lab steps to convert grid info to track info
+
+Now, we must extract the '.lef' file from the '.mag' file and transfer it into the picorv32a flow. There are certain rules that must be followed while creating standard cells: The input and output ports must be located at the intersection of the vertical and horizontal tracks. The standard cell's width and height should be odd multiples of the track pitch and vertical pitch, respectively.
+
+The file is located in ``` pdk/sky130/libs.tech /openlane/sky130_fd_sc_hd/track.info ``` to get grid coordinates, 
+
+<img src="images/grid coordinates.PNG" alt="Alt Text">
+
+<img src="images/intersection.PNG" alt="Alt Text">
+
+
 
 #### 4.1.2 Lab steps to convert magic layout to std cell LEF
 
+The port name along with its values will now need to be defined. Different ports can have their values changed, and we will need to modify the 'attach to layer' as Metal1 for the power and ground ports.
+
+<img src="images/enabling text.PNG" alt="Alt Text">
+
+<img src="images/vsdinv.PNG" alt="Alt Text">
+
+<img src="images/overwrite.PNG" alt="Alt Text">
 
 
 #### 4.1.3 Introduction to timing libs and steps to include new cell in synthesis
+
+We have to run the synthesis using the below commands here, 
+
+```
+docker ./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]      
+add_lefs -src $lefs
+run_synthesis
+
+```
 
 #### 4.1.4 Introduction to delay tables 
 
@@ -509,8 +539,6 @@ set ::env(SYNTH_SIZING) 1
 
 echo $::env(SYNTH_DRIVING_CELL)
 
-
-
 ```
 
 <img src="images/overwrite.PNG" alt="Alt Text">
@@ -535,7 +563,7 @@ We can see the placement in the below image,
 
 zommed image, 
 
-<img src="images/zommed floorplan.PNG" alt="Alt Text">
+<img src="images/zoomed floorplan.PNG" alt="Alt Text">
 
 the ``` sky_vsdinv ``` 
 
