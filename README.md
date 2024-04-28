@@ -576,7 +576,7 @@ Next, select a blank area and place the cursor over selected place icon. Then ex
 
 We have to edit sky130A.tech file and execute the tkon file and load poly 9 file in that. 
 
-<img src="images/dimensions of emty poly.PNG.PNG" alt="Alt Text">
+<img src="images/dimensions of emty poly.PNG" alt="Alt Text">
 
 #### 3.3.6 Lab challenge exercise to describe DRC error as geometrical construct 
 
