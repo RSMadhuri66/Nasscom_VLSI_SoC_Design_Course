@@ -8,11 +8,11 @@
 
 This is the typical Arduino Leonardo Board. The highlighted part is the chip, and we are going to learn more about the design and contents of the chip in this course. This chip is designed from synthesis all the way down for production using the RTL to GDSll pipeline. Arduino consists of a programmable circuit board and a piece of software, or IDE that runs on a computer and is used to create and upload computer code to Arduino. 
 
-<img src="images/Arduino.png" alt="Alt Text" width="800" height="600">
+<img src="images/Arduino.png">
 
 The below image describes the schematic representation of a microprocessor/ S-o-C architecture, it contains processor/SoC, SDRAM, Vcc/GND, ADC, QSPL1- Flash, UART ports, SPI ports. 
 
-<img src="images/Architecture.png" alt="Alt Text" width="800" height="600">
+<img src="images/Architecture.png" >
 
 **Processor/SoC:** This system-on-a-chip that is the main component which runs the whole system. 
 I2C1, QSPI2, UART1/2, PWM0-5, GPIO00-14: These are peripheral interfaces and though these input/output (I/O) signals are directly connected to the processor/SoC. (Which will be discussed in the later part again). 
@@ -29,14 +29,14 @@ I2C1, QSPI2, UART1/2, PWM0-5, GPIO00-14: These are peripheral interfaces and tho
 RISC-V is an open-source instruction set architecture (ISA) based on reduced instruction set computing (RISC) concepts. It has a modular design with several common extensions, enabling for customization based on unique application demands. RISC-V architectures value simplicity, efficiency, and scalability, making them suited for a wide range of applications, from microcontrollers to high-performance computing systems. RISC-V, with its expanding ecosystem and widespread industrial adoption, has the potential to define the future of computer architecture.  The RISC-V instruction set architecture (ISA) is intended to be adaptable, with a core set of 32-bit naturally aligned instructions supplemented with variable-length extensions for increased flexibility. It supports a variety of address space variants, including 32-bit, 64-bit, and a proposed 128-bit flat address space, but has yet to be finalized due to a lack of practical experience.
 The below image shows how is the chip connected on the inside. 
 
- <img src="images/Inside chip.png" alt="Alt Text" width="800" height="600">
+ <img src="images/Inside chip.png" >
 
 
 #### 1.1.3	From Software Applications to Hardware
 This picture presents a conceptual overview of a computer system's basic architecture, emphasizing the roles of both software and hardware in enabling the device's complete functioning and capabilities.
 
 
- <img src="images/Layers.png" alt="Alt Text" width="800" height="600">
+ <img src="images/Layers.png" >
 
 
 The transition from software to hardware has 3 layers. The application layer, this layer includes user-facing software like as productivity apps and other programs with which users interact directly. These apps rely on the underlying system software to deliver functionality and communicate with the hardware.
@@ -44,7 +44,7 @@ The software, it consists of the operating system (e.g., Windows 7, Linux) and t
 
 ### 1.2	ASIC Design Flow
 
- <img src="images/open lane asic flow.png" alt="Alt Text" width="800" height="600">
+ <img src="images/open lane asic flow.png">
 
 This picture displays the electronic design automation (EDA) pipeline for producing an integrated circuit (IC) or chip. The procedure begins with the creation of a Register Transfer Level (RTL) description, which is subsequently converted into a gate-level network list. Static Timing Analysis (STA) and Design for Testability (DFT) approaches are used to ensure timing restrictions and testability. The following processes include floor planning, placement, clock tree synthesis, optimization, thorough routing, and different verification tests to ensure that the physical layout matches the logical design. Scripts are used to introduce phony vias and diodes in order to increase production yield. Finally, the design is converted to the GDSII format, which is the standard for semiconductor manufacturing, to complete the comprehensive EDA procedure.
 
@@ -53,7 +53,7 @@ This picture displays the electronic design automation (EDA) pipeline for produc
 The first phase in the flow is synthesis, which converts the RTL code to a netlist. A netlist is a list of a circuit's components and their connections. The next phase is clock tree synthesis (CTS), which is the process of creating a circuit to distribute the clock signal throughout the chip. After the netlist and CTS are finished, the layout and power planning are completed. The floorplan is the circuit layout, and power planning is the process of constructing the circuit such that it has enough power.
 
 
- <img src="images/RTStoGDSII flow.png" alt="Alt Text" width="800" height="600">
+ <img src="images/RTStoGDSII flow.png">
  
 
 #### 1.2.3 Introduction to OpenLane 
@@ -124,16 +124,16 @@ Once we run the command, Openlane runs, after we need to run next command in ope
 
 It will look like in the below picture once it is successfully executed. 
 
-  <img src="images/preparation stage of openlane.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/preparation stage of openlane.jpeg">
 
 Once the preparation is completed, we will run a command run synthesis
 
-  <img src="images/synthesis run command.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/synthesis run command.jpeg">
 
 
 The run synthesis command will do the synthesis process and produces the results. Once it is completed, we will be able to see synthesis was successful and it will look like below, 
 
-  <img src="images/Synthesis.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/Synthesis.jpeg">
 
 
 After the synthesis is successful, to see the results of synthesis process we can go into following directories, 
@@ -142,17 +142,17 @@ After the synthesis is successful, to see the results of synthesis process we ca
 
 This command would take us to the directory where all the results are stored and it looks as below. 
 
-  <img src="images/report directories.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/report directories.jpeg">
 
 We can use ```less``` command to see what is in the output reports. 
 
 The timing report would look like this; 
 
-  <img src="images/timing report.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/timing report.jpeg" >
 
 The detailed analysis can be performed using the printing statistics that we get from the report. 
 
- <img src="images/Detailed reports.jpeg" alt="Alt Text" width="800" height="600">
+ <img src="images/Detailed reports.jpeg">
 
 We can see that dxftp value is 1613 and the total number of wires are 14876 so, the flop ratio is 
 
@@ -160,7 +160,7 @@ We can see that dxftp value is 1613 and the total number of wires are 14876 so, 
 
 After the synthesis process, we can also observe the ABC mappings, 
 
-  <img src="images/mapping after synthesis.jpeg" alt="Alt Text" width="800" height="600">
+  <img src="images/mapping after synthesis.jpeg">
 
 
   ## DAY 2 - Good Floorplan vs Bad Floorplan and Introduction to library cells
@@ -172,7 +172,7 @@ This section is basically for the height & width of the core and die. Te basic I
 Considering the standard cell dimensions 1 unit and 1 unit and asuuming the same area for the flipflop too 
 This means area = 1unit * 1unit = 1 Sq. units. 
 
-<img src="images/Area.png" alt="Alt Text" width="800" height="600">
+<img src="images/Area.png">
 
 Combining all the flipflops together the length and width would be 2 units and 2 units. Therefore the toatl area would be 4 sq units. 
 
@@ -191,11 +191,11 @@ If the aspect ratio is 1, it means that the chip is square and when AR is any ot
 
 Let's consider an example of a big combinational logic with N logic gates. Breaking down this combinational logic into granular parts i.e; breaking the circuit into 2 blocks and executing them seperately. The I/O pins of them are extended and connected. 
 
-<img src="images/Cut circuit.png" alt="Alt Text" width="800" height="600">
+<img src="images/Cut circuit.png">
 
 Each box is backboxed i.e; copied and made invisible to the top netlist. The major advantage of this process is that the black box can be used multiple times on the netlist. The 2 boxes can be given to two seperate users and they can be connected accordingly. 
 
-<img src="images/Black box.png" alt="Alt Text" width="800" height="600">
+<img src="images/Black box.png" >
 
 The main concept of the preplaced cells is that the cells are executed only once and they can be reused in the netlist whenever there is a similar kind of requirement.  
 
@@ -209,34 +209,34 @@ All the blocks A,B,C are placed close to the input side, these cells are placed 
 
 Considering a circuit. In this case the circuit gets the power supply from the main supply itself, since the main supply is far from the circuit, there would be a voltage drop and losses. So, if we consider 1 volt is taken from Vdd, by the time it reaches the circuit, Vdd' will be 0.7 or 0.8 and the rest of it is drained in the voltage loss. 
 
-<img src="images/Decouple circuit.png" alt="Alt Text" width="800" height="600">
+<img src="images/Decouple circuit.png">
 
 If the voltage is in undefined region then it might go towards logic 1 or logic 0. 
 
-<img src="images/Noise Margin.png" alt="Alt Text" width="800" height="600">
+<img src="images/Noise Margin.png">
 
 Therefore to reduce this, Decoupled capacitors are placed. In this case, the decoupled capacitors act like a charge buffer, they are placed close to the circuit and they provide continous supply to the circuit. When the logic has to be 1 the capacitior discharges and provides the required voltage. When it has to charge, it takes the voltage from main power supply. 
 
-<img src="images/Decoupling Capacitors.png" alt="Alt Text" width="800" height="600">
+<img src="images/Decoupling Capacitors.png">
 
 This eliminates the voltage drops and continously provides voltage to the circuit making sure it is not in undefined region. The chip looks like this after placing the decoupling capacitors. 
 
-<img src="images/Chip.png" alt="Alt Text" width="800" height="600">
+<img src="images/Chip.png">
 
 #### 2.1.4 Power Planning
 
 Considering a complete circuit with 4 Macros and logic. Connecting all the Macros to the power supply, the ground lines are tapped to the ground. Assume the 'red' path is 16 bit bus, and the supply power is source. 
 When logic is 1 it is charged to voltage V 
 
-<img src="images/Macros" alt="Alt Text" width="800" height="600">
+<img src="images/Macros.png">
 
 the inverter changes from logic 0 to logic 1 or vice versa, that means all the capacitord which are charged will be discharged and all the discharged ones will be charged. Since all the charged capacitors are discharged to ground, there is a bounce, and it is called as Ground bounce. If the bounce moves to the undefined region, it might be a problem.
 
-<img src="images/Voltage Bounce.png" alt="Alt Text" width="800" height="600">
+<img src="images/Voltage Bounce.png">
 
 When all the capacitors charge, then there is demand in power supply and then voltage droop occurs. As long as the droop is in Noise Margin, there shouldn't be a problem. This is called mainly because of one power supply for the whole region. Instead of single power supply, we would have multiple to facilitate the power for all the macros. 
 
-<img src="images/Voltage Droop" alt="Alt Text" width="800" height="600">
+<img src="images/Voltage Droop.png" >
 
 #### 2.1.5 Pin Placement and Logical cell placement blockage. 
 Circuit 1 is powered by clk1, circuit 2 by clk2, and they have separate inputs (Din1 and Din2) and outputs (Dout1 and Dout2). The preplaced cells and BlockA receive input from Din1, followed by input from Din2. Another set of prepared cells, BlockB, receives input from clk1 and clk2 and outputs clk. As a result, we now have four input ports: Din1, Din2, Clk1, and Clk2, as well as three output ports: Dout1, ClkOut, and Dout2. 
@@ -395,13 +395,33 @@ In our simulation approach, we're using transient analyses with pulse input wave
 
  ```git clone https://github.com/nickson-jose/vsdstdcelldesign```
 
+ <img src="images/cloning git.PNG" alt="Alt Text">
+
  This will create a folder vsdstdcelldesign in Openlane directory.
 
  The contents of the folder are : 
+ 
+```
+├──  Images
+├── README.md
+├──  LICENSE
+├──  extras
+├── sky130_inv.mag
+├── sky130A.tech
+├──  sky130_inv.ext
+├── sky130_inv.spice
+├── bsim4v5.out
+├── sky130_vsdinv.mag
+├── sky130_vsdinv.lef
+├── libs
+
+```
 
 
  CMOS Inverter Magic File 
 
+ 
+ <img src="images/cell design.PNG" alt="Alt Text">
 
  ### 3.2 CMOS Fabrication Process
  #### 3.2.1 Create Active regions
@@ -422,7 +442,6 @@ The gate terminal regulates the threshold voltage, which is required for transis
 #### 3.2.4 Lightly doped drain (LDD) formation
 
 The necessary doping profile, such as P+, P-, and N, must be achieved throughout the fabrication process in order for transistors to function properly. This profile includes P+ for the source and drain in PMOS transistors, P- for Lightly Doped Drain (LDD) creation, and N for the substrate. Similarly, in NMOS transistors, N+ is used for the source and drain, N- is used for LDD creation, and P represents the substrate. The purpose of this profile is to counteract two major effects: the hot electron effect and the short channel impact. When the device size is reduced, the hot electron effect develops, resulting in increased electric fields and energy in carriers, which may cause reliability difficulties.
-
 
 The short channel effect occurs when drain voltage enters the gate channel, impairing the gate's capacity to control current flow. To counteract these effects, the fabrication procedure involves the creation of LDD structures. This procedure involves using masks to protect certain areas, implanting phosphorous for N-type impurities, and implanting boron for P-type impurities. Side wall spacers formed by anisotropic etching assist preserve the LDD structures during subsequent implantation procedures for source and drain development, ensuring that the proper doping profile is maintained. These specific fabrication techniques are vital in enhancing transistor performance and reliability.
 
