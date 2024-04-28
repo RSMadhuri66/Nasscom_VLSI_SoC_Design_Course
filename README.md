@@ -241,10 +241,15 @@ When all the capacitors charge, then there is demand in power supply and then vo
 #### 2.1.5 Pin Placement and Logical cell placement blockage. 
 Circuit 1 is powered by clk1, circuit 2 by clk2, and they have separate inputs (Din1 and Din2) and outputs (Dout1 and Dout2). The preplaced cells and BlockA receive input from Din1, followed by input from Din2. Another set of prepared cells, BlockB, receives input from clk1 and clk2 and outputs clk. As a result, we now have four input ports: Din1, Din2, Clk1, and Clk2, as well as three output ports: Dout1, ClkOut, and Dout2. 
 
-Adding up similar design to the existing circuit, it will have 6 input ports and 5 output ports. This whole timing information and the connectivity are coded in Verilog/VHDL language and it is called a Netlist. 
+<img src="images/Flip flops.png" alt="Alt Text">
+
+Adding up similar design to the existing circuit, it will have 6 input ports and 5 output ports. This whole timing information and the connectivity are coded in Verilog/VHDL language and it is called a Netlist.
+
+<img src="images/Complete flip flops.png" alt="Alt Text">
+
 Keeping the netlist in the core and filling the space between the core and the die with pin information. The input ports are located on the left side, while the output pins are on the right. The order of placing is "random".
 
-<img src="images/.PNG" alt="Alt Text">
+<img src="images/power planning.png" alt="Alt Text">
 
 #### 2.1.6 Steps to run floorplan using OpenLANE
 
@@ -291,7 +296,11 @@ We can see the buffer from the below image.
 
 We have a netlist of gates, and the shapes of the gates represent their functionality. So, if we consider the NOT gate to be a tringular shape, it is actually a box with physical dimensions of width and height. Similarly, the AND gate and flipfops have shapes but they are square boxes. Every logic is essentially assumed to be a square box. All of the gates and flipflops' physical dimensions have now been set. We will provide a certain form with specific dimensions for each component of the netlist since shapes such as AND and OR gates do not exist in the actual world, so we make them square boxes. All blocks will also have a width and height, as well as the right shape.
 
+<img src="images/Placement Big image.PNG" alt="Alt Text">
+
 A library has all the information related to teh netlist. It will also have the information of the height and width.  Once all the shapes and sizes of the gate are described then all of them are placed on the floorplan. Since there are already preplaced cells, the placement makes sure that they are not disturbed and it will also take care, that are no other cells which are placed in that area. 
+
+<img src="images/Flip flops and Placement.PNG" alt="Alt Text">
 
 #### 2.2.2 Optimize placement using estimated wire-length and capacitance
 
@@ -304,11 +313,15 @@ Based on signal transition (slew) we can say that it goes beyond a certain limit
 In 1st step, There is no need of any repeaters because the are close to each other and the signal intergity is maintained. 
 In second step, We would need repeaters/buffers because the distance is more. 
 
+<img src="images/1 and 2.PNG" alt="Alt Text">
+
 #### 2.2.3 Final placement optimization
 
 In 3rd step too, we would need buffers because 2nd logic gatre and the flipflop 2 is very high and since we have to maintain signal intergity, a buffer has been added. 
 
 In 4th step too, we need buffers becuase the distance is huge between Inputs, gates, and flipflops. 
+
+<img src="images/3 and 4.PNG" alt="Alt Text">
 
 #### 2.2.4 Need for libraries and characterization
 
@@ -354,19 +367,29 @@ The circuit design steps has 3 substeps again;
 
 Circuit Design must be implemented first, and then the PMOS and NMOS transistors must be modeled in a way that satisfies the library requirements.
 
+<img src="images/Cell design flow.png" alt="Alt Text"> 
+
 ### 2.3.2 Layout design step
 
 First, we implement the given function using PMOS and NMOS transistor connections. Then, we derive the PMOS and NMOS network graphs from this implementation, followed by finding the Euler's path for both networks. 
 
+ <img src="images/.png" alt="Alt Text"> 
+
 Using this path, we create a stick diagram, representing inputs and gate connections. This diagram is then converted into a layout while adhering to design rules and user-defined specifications, utilizing Magic. 
 
+ <img src="images/Stick Diagram.png" alt="Alt Text"> 
+
 The next crucial step involves extracting parasitics from the layout to characterize it in terms of timing. Finally, we proceed to characterize the layout, obtaining information on timing, noise, and power. 
+
+ <img src="images/Complete cell design flow.png" alt="Alt Text">
 
 The output typically includes the layout in GDS2 format along with an extracted spike netlist. These steps highlight the complexity involved in even seemingly simple circuit designs, demonstrating the thorough process required for effective layout design.
 
 #### 2.3.3 Typical characterization flow
 
 The characterization flow for the circuit involves several crucial steps to accurately analyze its behavior. First, we gather all necessary inputs, such as the layout, SPICE netlist, and subcircuit models. Then, we proceed with reading the SPICE models and the extracted netlist to understand the circuit's characteristics. Defining the behavior of the circuit is pivotal in this process. Subsequently, we integrate the subcircuit models and establish connections to the power sources to ensure proper functioning. Applying stimulus to the circuit enables us to observe its response under different conditions. Additionally, specifying the output capacitance is essential for accurate characterization. Finally, we execute the simulation by providing the necessary commands, such as transient simulation, to analyze the circuit's performance comprehensively. 
+
+<img src="images/Circuit.png" alt="Alt Text">
 
 ### 2.4 General timing characterization parameters
 #### 2.4.1 Timing threshold definitions
@@ -376,15 +399,23 @@ are important to determine the slope of the waveforms. The Slew_low_rise_thr is 
 
 We looked at the importance of the in-rise and out-rise threshold are about 50% mark on the input and output waveforms. Fall waveforms characteristics are also calculated in the similar fashion.  
 
+<img src="images/In and Out rise.png" alt="Alt Text">
+
+<img src="images/Slew.png" alt="Alt Text">
+
 #### 2.4.2 Propagation Delay and Transition Time 
 
 Propagation delay =  output - input threshold (determines how fast a signal propagates through a circuit). 
                   = (out_rise_thr) - (in_rise_thr)
 
+<img src="images/Propagation Delay.png" alt="Alt Text">
+
 Transition time = Low Threshold - High Threshold ( the time it takes for a signal to transition between thresholds). 
                 = (slew_high_rise_thr) - (slew_low_rise_thr)
 
 Whenever we see a negative delay, it means that the choice of the points is not right and getting negative delays is not accepted. 
+
+<img src="images/Prop Delay 1.png" alt="Alt Text">
 
 ## Day 3 - Design library cell using Magic Layout and ngspice characterization
 ### 3.1 Labs for CMOS inverter ngspice simulations
