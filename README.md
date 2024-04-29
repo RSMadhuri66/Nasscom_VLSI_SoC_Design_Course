@@ -1083,7 +1083,7 @@ read_spef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/routing/pico
 
 ## References 
 
-- [](https://github.com/google/skywater-pdk)
+- [Skywater PDK](https://github.com/google/skywater-pdk)
 
 
 
