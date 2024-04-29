@@ -461,9 +461,9 @@ The Model File has the Complete Description about PMOS and NMOS.
 
 After we do Spice Simulation, we get graphs. 
 
-<img src="images/Spice Graph 1.png" alt="Alt Text">
+<img src="images/Spice Graph 1 .png" alt="Alt Text">
 
-<img src="images/Spice Graph 2.png" alt="Alt Text">
+<img src="images/Spice Graph 2 .png" alt="Alt Text">
 
 #### 3.1.4 Switching Threshold Vm 
 
@@ -528,14 +528,19 @@ The choice of substrate is an important step in the production of semiconductors
 
 Layers of photoresist shield specific regions during later processing stages. Local oxidation of silicon (LOCOS) is the process by which the silicon dioxide layer is selectively generated in exposed locations after superfluous materials have been etched away. The field oxide is formed by this development, creating electrical isolation between transistor areas. In order to achieve well-defined active and isolating regions—which are crucial for transistor operation and the prevention of undesired electrical coupling—the silicon nitride layer is finally eliminated.
 
+ <img src="images/Psubstrate.png" alt="Alt Text">
+
+
  #### 3.2.2 Formation of N-well and P-well
 
 P-well and N-well cannot be done at a same time. When using photoresist for a region, we have to completely close the other region and mask & UV light, patterning of P-well can be performed. 
 
+<img src="images/P well and N well.png" alt="Alt Text">
 
  #### 3.2.3 Formation of Gate Terminal 
 
 The gate terminal regulates the threshold voltage, which is required for transistor operation. The threshold voltage equation depends on characteristics such as doping concentration and oxide capacitance. The doping concentration and oxide capacitance can be adjusted to reach the desired threshold voltage for transistors. The relationship between fabrication and threshold voltage emphasizes the significance of controlled tests in semiconductor production. Moving onward, the creation of the gate requires maintaining the doping concentration. In a multi-step process, such as a 16-mask process, the fourth mask is used to shield certain parts while exposing others to UV light for chemical action and photoresist removal. These repeating photolithography operations are essential for introducing masks or layouts during production.
+
 
 #### 3.2.4 Lightly doped drain (LDD) formation
 
@@ -543,11 +548,15 @@ The necessary doping profile, such as P+, P-, and N, must be achieved throughout
 
 The short channel effect occurs when drain voltage enters the gate channel, impairing the gate's capacity to control current flow. To counteract these effects, the fabrication procedure involves the creation of LDD structures. This procedure involves using masks to protect certain areas, implanting phosphorous for N-type impurities, and implanting boron for P-type impurities. Side wall spacers formed by anisotropic etching assist preserve the LDD structures during subsequent implantation procedures for source and drain development, ensuring that the proper doping profile is maintained. These specific fabrication techniques are vital in enhancing transistor performance and reliability.
 
+<img src="images/LDD.png" alt="Alt Text">
+
 #### 3.2.5 Source and Drain Formation
 
 Adding a tiny coating of screen oxide prevents ions from reaching too deep during implantation by reversing their path.  We add arsenic to make certain sections of the chip more conductive, and boron to make others less conductive. Then we heat everything up to set the adjustments in place. This ensures that the chip's components perform as planned. 
 
 Finally the CMOS is put into the furnace atleast of 1000 Degrees 
+
+<img src="images/Source and Drain.png" alt="Alt Text">
 
 #### 3.2.6 Local interconnect formation
 
@@ -556,6 +565,8 @@ Here, we begin by removing the thin screen oxide layer that had been used to pre
 #### 3.2.7 Higher level metal formation
 
 Higher-level metal interconnects are formed by depositing a thick layer of phosphorus- or boron-doped SiO2. Then, chemical mechanical polishing (CMP) is done to planarize this layer. After that,  SiO2 layer is etched off and contact holes are made using photolithography.  thin coating of titanium nitride (TiN) is deposited first, then thick layer of tungsten is applied, and then CMP is used to polish the layers together. Tungsten is put into the contact holes, and then another layer of metal placed. The necessary contact regions are exposed by designing this metal layer using mask, and any extra metal is removed by etching. Finally, a  layer of Si3N4 is deposited, and mask 16 is used to make the contact holes for bringing the contacts outside the chip. This completes the fabrication processand CMOS is created using multiple layers. 
+
+<img src="images/Final Fabrication.png" alt="Alt Text">
 
 #### 3.2.8 Lab introduction to Sky130 basic layers layout and LEF using inverter
 
@@ -686,12 +697,16 @@ run_synthesis
 
 Delay tables represent the input transitions and output loads, delay characteristics of every buffer. analysis of these delay tables, will help us to understand the delays caused by various clock tree buffers, considering their fluctuating input transitions and output loads. It's important to understand the timing properties of the buffers involved when applying clock gating in a clock tree. 
 
+<img src="images/Delay table part 1.png" alt="Alt Text">
+
 #### 4.1.5 Delay table usage Part 2
 
 Using logical gates, such as AND or OR gates, to modify the clock signal's flow is known as clock gating. Therefore, it is possible to optimize power consumption by enabling or restricting the clock signal's propagation depending on specific conditions. Delay tables, such as two-dimensional tables (LFOs), are used to record each buffer's delay characteristics by changing the input transitions and output loads.
 
 - Each node should drive the same load to maintain consistency.
 - Buffers at the same level should be identical to avoid skew issues.
+
+<img src="images/Delay table CBUF 2.png" alt="Alt Text">
 
 #### 4.1.6 Lab steps to configure synthesis settings to fix slack and include vsdinv
 
@@ -758,10 +773,14 @@ The final placement looks like this,
 
 Before going on to real clocks in timing analysis using ideal clocks, we first need to understand its basic components and characteristics. Initially, we have a clock frequency of 1 GHz and clock period of 1 ns. Considering an example with an ideal clock network, a launch flop, a capture flop, and combinational logic between them. In order to ensure correct functioning with frequency, the combinational delay between the flops must be less than the clock period. This setup time decreases the effective time available for combinational logic operations in each clock period. As a result, the combinational delay is changed to allow setup time, making sure that the system functions consistently at the required frequency.
 
+<img src="images/Jitter 1.png" alt="Alt Text">
 
 #### 4.2.2  Introduction to clock jitter and uncertainty
 
 Jitter is a temporary variations in the clock period due to inherent variations in clock source.  These variations impact the effective time available for combinational logic operation within each clock period. Along with Jitter we have, setup uncertainty (SU) , setup time (S), adjusting the combinational delay. With the clock period (T) set at 1 ns, setup time at 10 ps (0.01 ns), and uncertainty at 90 ps, the combinational delay is roughly 1.9 nanoseconds. 
+
+<img src="images/Jitter.png" alt="Alt Text">
+
 
 #### 4.2.3 Lab steps to configure OpenSTA for post-synth timing analysis
 
