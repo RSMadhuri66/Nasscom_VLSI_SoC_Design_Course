@@ -849,10 +849,13 @@ To generate the timing output ``` report_checks -fields {net cap slew input_pins
 
 While doing the first connections, the connections to the clock port and flipflops were made in such a way that they formed a structure but the distribution wasn't equal and resulted in skew. Therefore to reduce the skew, H tree algorithm is used, it takes the midpoint of the clock path and constructs a balanced a tree structure, making sure that the clock time are similar at all flip flops, at the same time some buffers are also added to ensure signal integrity and reduces the losses because of resistance and capacitance. 
 
+<img src="images/CTS with all buffers.png" alt="Alt Text">
 
 #### 4.3.2 Clock tree synthesis TritonCTS and signal integrity
 
 In our clock set up, we verified that all of the clock's factors, such as its starting and ending points, were exactly in sync.  However, we must also be careful about issues such as crosstalk, which can interfere with our clock signals and create errors. To prevent this, we are going to put a protective shield around our clock signals, similar to building a fence to keep them safe. The fence avoids unwanted interference and ensures that our clock signals are correct. It's just like adding an extra layer of protection so that everything runs correctly.
+
+<img src="images/Shield.png" alt="Alt Text">
 
 #### 4.3.3 Lab steps to run CTS using TritonCTS
 
@@ -926,9 +929,7 @@ Using hold timing analysis we want to make sure that the data doesn't change too
 1+2=∆1 and 1+3+4=∆2 and (∆1-∆2)=skew
 In these cases we have to consider the propogation skew (s) and uncertainty delay (US). If (Data required time)- (Data arrival time) =  -ve then it is called Slack.  
 
-
 In hold time analysis the pulse is sent to both launch and capture flip flop.
-
 
 #### 4.4.2 Hold timing analysis using real clocks
 
@@ -993,8 +994,6 @@ report_clock_skew -hold
 report_clock_skew -setup
 exit
 ```
-
-
 
 ## Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
 
