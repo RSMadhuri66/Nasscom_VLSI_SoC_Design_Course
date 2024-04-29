@@ -1,4 +1,4 @@
-# Nasscom_VLSI_SoC_Design_Course
+# DIGITAL-VLSI-SOC-DESIGN-AND-PLANNING
 
 ## DAY 1 - Inception of open-source EDA, OpenLANE and sky130 PDK
 
@@ -1083,11 +1083,17 @@ read_spef /openLANE_flow/designs/picorv32a/runs/18-04_20-08/results/routing/pico
 
 ## References 
 
-- [Skywater PDK](https://github.com/google/skywater-pdk)
-- [GitHub](https://github.com)
-- [Cell Design](https://github.com/nickson-jose/vsdstdcelldesign)
-- [OpenLane](https://openlane.readthedocs.io/en/latest/flow_overview.html)
+- Skywater PDK [https://github.com/google/skywater-pdk)] 
+- Github [https://github.com]
+- Cell Design [https://github.com/nickson-jose/vsdstdcelldesign]
 - Opnelane [https://openlane.readthedocs.io/en/latest/flow_overview.html]
+- Skywater PDK Docs [https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html#poly]
+- Notes References [https://github.com/kmkalpana2001/DIGITAL-VLSI-SOC-DESIGN-AND-PLANNING?tab=readme-ov-file]
+- Images Source [https://vsdiat.com/dashboard]
+- Content Source [https://www.vlsisystemdesign.com/wp-content/uploads/2017/07/Introduction-to-Industrial-Physical-Design-Flow.pdf]
 
+## Acknowledgement 
+
+I would like to extend my gradtitude to Mr.Kunal Gosh, Mr.Nickson Jose, Mr.Mohamad Shalan, and Mr.Tim Edwards for their outstanding mentorship and insightful presentation during the DIGITAL-VLSI-SOC-DESIGN-AND-PLANNING workshop. The workshop was expertly crafted and flawlessly executed, providing me with invaluable insights and perspectives. The workshop not only imparted knowledge but also provided fresh perspectives, enriching my understanding of the subject. My heartfelt thanks go out to Mr. Kunal Ghosh and Mr. Nickson Jose for their unwavering commitment towards learning and contributing to the success of this endeavor. 
 
 
