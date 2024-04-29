@@ -432,15 +432,23 @@ First we need to create a SPICE netlist. A netlist is a file that contains infor
 
 Initially Substrate Pins are Defined. 
 
+<img src="images/Spice connections.png" alt="Alt Text">
+
 Next Values for PMOS and NMOS are given. 
 
 In the Next step the Nodes are identified. 
 
+<img src="images/Name Nodes.png" alt="Alt Text">
+
 Nodes are properly named, Vin, Vss, Vdd, out.
+
+<img src="images/Nodes.png" alt="Alt Text">
 
 Lastly a Spice Deck is created using the following format, 
 
 Drain - Gate - Source - Substrate 
+
+<img src="images/Spice Deck.png" alt="Alt Text">
 
 #### 3.1.3 SPICE simulation lab for CMOS inverter
 
@@ -449,8 +457,13 @@ Input Voltage is connected between Vin and 0 and has a value of 2.5V
 
 The Model File has the Complete Description about PMOS and NMOS. 
 
+<img src="images/Spice Deck.png" alt="Alt Text">
+
 After we do Spice Simulation, we get graphs. 
 
+<img src="images/Spice Graph 1.png" alt="Alt Text">
+
+<img src="images/Spice Graph 2.png" alt="Alt Text">
 
 #### 3.1.4 Switching Threshold Vm 
 
@@ -460,11 +473,17 @@ The switching threshold is defined as VIN = VOUT.
 
 During the switching transition, both the PMOS and NMOS transistors operate in the saturation region and at the switching threshold, the gate-source voltage (VGS) and the drain-source voltage (VDS) are equal. Despite opposite current flow directions in PMOS and NMOS, their magnitudes remain equal, resulting in a net current of zero, like IDSP equals -IDSN.
 
+<img src="images/Spice Waveform.png" alt="Alt Text">
+
+<img src="images/CMOS Roboust.png" alt="Alt Text">
+
 #### 3.1.5 Static and dynamic simulation of CMOS inverter
 
 In our simulation approach, we're using transient analyses with pulse input waveforms to understand how CMOS inverters behave dynamically. By calculating rise and fall delays and determining switching thresholds, we're measuring how fast and reliable these inverters are across different configurations. We're tweaking the sizes of both PMOS and NMOS transistors to see how their proportions affect signal propagation and switching behavior. Through this process, we can understand how transistor sizing impacts the overall performance of CMOS inverters. 
 
  Time vs Voltage is plotted and we can calculate the fall and rise delay. 
+
+ <img src="images/Spice Waveform 1.png" alt="Alt Text">
 
  #### 3.1.6 Lab steps to git clone vsdstdcelldesign 
 
